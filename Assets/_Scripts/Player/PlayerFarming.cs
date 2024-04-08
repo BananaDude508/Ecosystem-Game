@@ -23,10 +23,11 @@ public class PlayerFarming : MonoBehaviour
 		{
 			PlantGrowth targetPlant = GetPlantCollision();
 			if (targetPlant == null) return;
+			string type = targetPlant.plantType;
 
-			wheat += targetPlant.growthStage;
-			Debug.Log(targetPlant.growthStage + " wheat gained");
-			Debug.Log("Current amount of wheat is " + wheat);
+			items[type].amount += targetPlant.growthStage;
+			Debug.Log(targetPlant.growthStage + " " + type + " gained");
+			Debug.Log("Current amount of " + type + " is " + items[type].amount);
 
 			RemovePlant(targetPlant);
 			Destroy(targetPlant.gameObject);
