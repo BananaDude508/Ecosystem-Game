@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
 
 	public float moveSpeed = 10f;
-
+	public float slowdown = 1f;
 
 
 	private void Awake()
@@ -20,7 +20,8 @@ public class PlayerMovement : MonoBehaviour
 	{
 		GetMovementDirection();
 
-		transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+		// transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+		rb.AddForce((moveDirection * moveSpeed) - rb.velocity * slowdown);
 	}
 
 	private Vector2 moveDirection;

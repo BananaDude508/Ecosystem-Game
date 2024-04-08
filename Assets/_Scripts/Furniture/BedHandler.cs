@@ -6,13 +6,13 @@ using static AllPlantsManager;
 
 public class BedHandler : MonoBehaviour
 {
-	private bool collidingWithPlayer = false;
+	private bool playerNeaby = false;
 
 	public Animator overlayAnim;
 
 	private void Update()
 	{
-		if (collidingWithPlayer && Input.GetKeyDown(KeyCode.E))
+		if (playerNeaby && Input.GetKeyDown(KeyCode.E))
 		{
 			if (TryAdvancingDay())
 			{
@@ -23,16 +23,16 @@ public class BedHandler : MonoBehaviour
 		}
 	}
 
-	private void OnCollisionEnter2D(Collision2D other)
+	private void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.tag == "Player")
-			collidingWithPlayer = true;
+            playerNeaby = true;
 	}
 
-	private void OnCollisionExit2D(Collision2D other)
+	private void OnTriggerExit2D(Collider2D other)
 	{
 		if (other.gameObject.tag == "Player")
-			collidingWithPlayer = false;
+            playerNeaby = false;
 	}
 
 	private void PlaySleepAnim()

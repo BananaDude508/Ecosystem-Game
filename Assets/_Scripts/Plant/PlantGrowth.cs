@@ -8,8 +8,10 @@ public class PlantGrowth : MonoBehaviour
 	public SpriteRenderer sr;
 	public Sprite[] growthStages;
 	public int growthStage = 0;
-	public float timeToGrow = 3f;
 	public string plantType = "wheat";
+
+	[SerializeField] private int harvestPenalty = 0;
+    [HideInInspector] public int harvestReward = 0;
 
 	private void Awake()
 	{
@@ -19,7 +21,6 @@ public class PlantGrowth : MonoBehaviour
 	private void Start()
 	{
 		sr.sprite = growthStages[0];
-		// Invoke("Grow", timeToGrow + Random.Range(-0.5f, 2.5f));
 	}
 
 	public void Grow()
@@ -30,7 +31,7 @@ public class PlantGrowth : MonoBehaviour
 
 			sr.sprite = growthStages[growthStage];
 
-			// Invoke("Grow", timeToGrow + Random.Range(-0.5f, 2.5f));
+			harvestReward = Mathf.Max(0, growthStage - harvestPenalty);
 		}
 	}
 

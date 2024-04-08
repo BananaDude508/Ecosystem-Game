@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using static PlayerInventory;
@@ -11,6 +12,7 @@ public static class PlayerInventory
     public static int money = 0;
 
     public static Dictionary<string, Item> items = new Dictionary<string, Item>();
+    public static List<string> itemTypes = new List<string>();
 
     public static void AddItem(string name)
     {

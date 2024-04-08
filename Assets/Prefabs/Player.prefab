@@ -59,7 +59,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 99
   m_TargetDisplay: 0
 --- !u!114 &2070123
 MonoBehaviour:
@@ -365,7 +365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ae15d7a2f568049b921523c3d8061e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 55
+  slowdown: 10
 --- !u!50 &7359598243866554960
 Rigidbody2D:
   serializedVersion: 4
@@ -399,7 +400,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 874f6124f9461f44d8da972ee8601857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plant: {fileID: 7866542910411050117, guid: 68c746eaa1fa9cf4eb2492f5f0b8047f, type: 3}
+  plants:
+  - {fileID: 7866542910411050117, guid: 68c746eaa1fa9cf4eb2492f5f0b8047f, type: 3}
+  - {fileID: 7866542910411050117, guid: c457752a03f58d945865017ef73e173d, type: 3}
+  - {fileID: 7866542910411050117, guid: ea8ea0cafc5ccff47b342b7c367036c4, type: 3}
+  - {fileID: 7866542910411050117, guid: 4495303049142a1438ab2c08a677e03a, type: 3}
+  plantTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   plantLayer:
     serializedVersion: 2
     m_Bits: 1024

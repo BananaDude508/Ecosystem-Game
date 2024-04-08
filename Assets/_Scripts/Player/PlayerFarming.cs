@@ -6,18 +6,22 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static PlayerInventory;
 using static AllPlantsManager;
+using TMPro;
 
 public class PlayerFarming : MonoBehaviour
 {
-	public GameObject plant;
+	public GameObject[] plants;
+	public int currentPlant;
+
+	public TextMeshProUGUI[] plantTexts;
+
 	public LayerMask plantLayer;
 	private bool touchingPlant = false;
 
-
-	private void Update()
+    private void Update()
 	{
-		if (!touchingPlant && Input.GetMouseButtonDown(0))
-			Instantiate(plant, transform.position.Round(), Quaternion.identity);
+		if (!touchingPlant && !HoveringOverUI() && Input.GetMouseButtonDown(0))
+			Instantiate(plants[currentPlant], transform.position.Round(), Quaternion.identity);
 
 		if (touchingPlant && Input.GetMouseButtonDown(1))
 		{
@@ -25,8 +29,9 @@ public class PlayerFarming : MonoBehaviour
 			if (targetPlant == null) return;
 			string type = targetPlant.plantType;
 
-			items[type].amount += targetPlant.growthStage;
-			Debug.Log(targetPlant.growthStage + " " + type + " gained");
+			items[type].amount += targetPlant.harvestReward;
+			UpdatePlantAmount(type);
+			Debug.Log(targetPlant.harvestReward + " " + type + " gained");
 			Debug.Log("Current amount of " + type + " is " + items[type].amount);
 
 			RemovePlant(targetPlant);
@@ -50,5 +55,27 @@ public class PlayerFarming : MonoBehaviour
 	{
 		if (other.tag == "Plant")
 			touchingPlant = false;
+	}
+
+	public void PreparePlant(int newPlantInvId)
+	{
+		currentPlant = newPlantInvId;
+	}
+
+	public void UpdatePlantAmount(string plantType)
+	{
+		plantTexts[itemTypes.IndexOf(plantType)].text = items[plantType].amount.ToString();
+	}
+
+	private bool HoveringOverUI()
+	{
+		Vector3 pos = Input.mousePosition;
+
+		// This is the bounding box for the inventory. will need to find a
+		// better solution if more ui interactables are added
+		return pos.x >= 585
+			&& pos.x <= 1335
+		    && pos.y >= 25
+		    && pos.y <= 225;
 	}
 }

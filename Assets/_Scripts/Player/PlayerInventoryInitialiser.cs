@@ -6,14 +6,16 @@ using static PlayerInventory;
 
 public class PlayerInventoryInitialiser : MonoBehaviour
 {
-	public string[] itemTypes = new string[0];
+	public List<string> itemTypesINIT = new List<string>();
 
-	private void Awake()
+    private void Awake()
 	{
+		itemTypes = itemTypesINIT;
+
 		foreach (var type in itemTypes)
 			AddItem(type);
 
-		foreach (var item in items)
-			Debug.Log(item.Key);
+		// foreach (var item in items)
+		// 	Debug.Log(item.Key);
 	}
 }
