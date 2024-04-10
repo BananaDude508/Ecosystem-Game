@@ -14,9 +14,11 @@ public static class PlayerInventory
     public static Dictionary<string, Item> items = new Dictionary<string, Item>();
     public static List<string> itemTypes = new List<string>();
 
-    public static void AddItem(string name)
+    public static Item AddItem(string name)
     {
-        items.Add(name, new Item(name));
+        Item item = new Item(name);
+        items.Add(name, item);
+        return item;
     }
 }
 

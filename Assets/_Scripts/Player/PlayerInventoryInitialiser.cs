@@ -13,7 +13,7 @@ public class PlayerInventoryInitialiser : MonoBehaviour
 		itemTypes = itemTypesINIT;
 
 		foreach (var type in itemTypes)
-			AddItem(type);
+			AddItem(type).amount = 1;
 
 		// foreach (var item in items)
 		// 	Debug.Log(item.Key);

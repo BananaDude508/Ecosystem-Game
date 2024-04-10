@@ -18,10 +18,21 @@ public class PlayerFarming : MonoBehaviour
 	public LayerMask plantLayer;
 	private bool touchingPlant = false;
 
-    private void Update()
+
+	private void Start()
 	{
-		if (!touchingPlant && !HoveringOverUI() && Input.GetMouseButtonDown(0))
+		UpdateAllPlantAmounts();
+	}
+
+	private void Update()
+	{
+		Item equippedItem = items[itemTypes[currentPlant]];
+		if (!touchingPlant && !HoveringOverUI() && equippedItem.amount > 0 && Input.GetMouseButtonDown(0))
+		{
 			Instantiate(plants[currentPlant], transform.position.Round(), Quaternion.identity);
+			equippedItem.amount--;
+			UpdatePlantAmount(equippedItem);
+		}
 
 		if (touchingPlant && Input.GetMouseButtonDown(1))
 		{
@@ -65,6 +76,20 @@ public class PlayerFarming : MonoBehaviour
 	public void UpdatePlantAmount(string plantType)
 	{
 		plantTexts[itemTypes.IndexOf(plantType)].text = items[plantType].amount.ToString();
+	}
+
+	void UpdatePlantAmount(Item plant)
+	{
+		UpdatePlantAmount(plant.name);
+	}
+
+	public void UpdateAllPlantAmounts()
+	{
+		foreach (var item in items)
+		{
+			UpdatePlantAmount(item.Key);
+
+		}
 	}
 
 	private bool HoveringOverUI()
