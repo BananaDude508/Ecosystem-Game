@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static DayNightManager;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 		GetMovementDirection();
 
 		// transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
-		rb.AddForce((moveDirection * moveSpeed) - rb.velocity * slowdown);
+		rb.AddForce((!sleeping ? (moveDirection * moveSpeed) : Vector2.zero) - rb.velocity * slowdown); // only move if not sleeping, always slowdown
 	}
 
 	private Vector2 moveDirection;
