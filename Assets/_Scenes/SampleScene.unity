@@ -16825,6 +16825,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 64056361, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 468512178, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
