@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static AllPlantsManager;
+using static PlayerPopups;
 
 public class PlantGrowth : MonoBehaviour
 {
@@ -28,11 +29,31 @@ public class PlantGrowth : MonoBehaviour
 		if (growthStage + 1 < growthStages.Length)
 		{
 			growthStage++;
+            UpdateSprite();
+        }
+    }
 
-			sr.sprite = growthStages[growthStage];
+	public void HurtByCrow(int damage)
+	{
+		growthStage -= damage;
 
-			harvestReward = Mathf.Max(0, growthStage - harvestPenalty);
+		if (growthStage <= 0)
+		{
+			SetPopupText("Plants were destroyed by crows last night");
+			Invoke("ClearPopupText", 3);
+			allPlants.Remove(this);
+			Destroy(gameObject);
+			return;
 		}
-	}
 
+        UpdateSprite();
+
+    }
+
+    private void UpdateSprite()
+	{
+        sr.sprite = growthStages[growthStage];
+
+        harvestReward = Mathf.Max(0, growthStage - harvestPenalty);
+    }
 }
