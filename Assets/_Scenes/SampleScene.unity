@@ -16827,7 +16827,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 64056361, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 468512178, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
       propertyPath: m_AnchorMax.y
@@ -16892,6 +16892,10 @@ PrefabInstance:
     - target: {fileID: 597996371, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 688262295, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: plantLayer.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 1285199165, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
       propertyPath: m_AnchorMax.y
@@ -17036,10 +17040,6 @@ PrefabInstance:
     - target: {fileID: 2439805471372173067, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8221635821665664338, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
-      propertyPath: m_SortingOrder
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dabf428ca385f9a439f0665b10a93560, type: 3}

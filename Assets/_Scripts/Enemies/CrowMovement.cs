@@ -48,7 +48,6 @@ public class CrowMovement : MonoBehaviour
     {
         transform.right = target.position - transform.position;
         spriteRenderer.flipY = transform.rotation.eulerAngles.z <= 270;
-        Debug.Log(transform.rotation.eulerAngles);
     }
 }
 

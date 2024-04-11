@@ -41,8 +41,7 @@ public class PlantGrowth : MonoBehaviour
 		{
 			SetPopupText("Plants were destroyed by crows last night");
 			Invoke("ClearPopupText", 3);
-			allPlants.Remove(this);
-			Destroy(gameObject);
+			Invoke("DestroyThis", Time.deltaTime); // Delete the plant after a delay to stop the invalidoperationexception error
 			return;
 		}
 
@@ -56,4 +55,10 @@ public class PlantGrowth : MonoBehaviour
 
         harvestReward = Mathf.Max(0, growthStage - harvestPenalty);
     }
+
+	private void DestroyThis()
+	{
+		allPlants.Remove(this);
+		Destroy(gameObject);
+	}
 }
