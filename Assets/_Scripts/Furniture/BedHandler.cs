@@ -14,8 +14,6 @@ public class BedHandler : MonoBehaviour
 
     public CrowSpawner crowSpawner;
 
-	public string nearbyPopupText = "Press 'e' to sleep";
-
     private void Update()
 	{
 		if (playerNeaby && Input.GetKeyDown(KeyCode.E))
@@ -34,7 +32,6 @@ public class BedHandler : MonoBehaviour
 		if (other.gameObject.tag == "Player")
 		{
 			playerNeaby = true;
-			SetPopupText(nearbyPopupText);
 		}
 	}
 
@@ -43,7 +40,6 @@ public class BedHandler : MonoBehaviour
 		if (other.gameObject.tag == "Player")
 		{
 			playerNeaby = false;
-			if (CheckPopupText(nearbyPopupText)) ClearPopupText();
 		}
 	}
 

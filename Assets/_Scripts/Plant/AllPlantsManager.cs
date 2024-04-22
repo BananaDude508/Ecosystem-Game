@@ -5,7 +5,7 @@ using UnityEngine;
 public static class AllPlantsManager
 {
     public static List<PlantGrowth> allPlants = new List<PlantGrowth>();
-
+    // private static List<GameObject> savedObjects = new List<GameObject>();
     public static void AddPlant(PlantGrowth plantGrowth)
     {
         allPlants.Add(plantGrowth);

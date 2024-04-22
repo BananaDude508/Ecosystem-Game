@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static PlayerInventory;
 
 public class ShopManager : MonoBehaviour
@@ -34,6 +35,11 @@ public class ShopManager : MonoBehaviour
         // sell item to shop, gain money from it
         // item.Sell();
     }
+
+    public void ReturnToFarm()
+    {
+        SceneManager.LoadScene("Game");
+    }
 }
 
 public class ShopItem
@@ -56,7 +62,7 @@ public class ShopItem
         this.originalAmount = amount;
         this.stockModifier = stockModifier;
         this.priceModifier = priceModifier;
-        amountPurchasedToday = 0;
+        this.amountPurchasedToday = 0;
     }
 
 	public int UpdatePrice()
