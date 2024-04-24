@@ -9,12 +9,8 @@ public static class DayNightManager
 
 	public static bool TryAdvancingDay()
 	{
-		Debug.Log("Trying to advance to day " + (currentDay + 1));
-
 		if (sleeping) return false;
-
 		currentDay++;
-		Debug.Log("Advance to " + currentDay + " successful");
 		return true;
 	}
 }

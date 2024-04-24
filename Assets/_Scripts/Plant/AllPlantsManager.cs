@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class AllPlantsManager
 {
     public static List<PlantGrowth> allPlants = new List<PlantGrowth>();
     // private static List<GameObject> savedObjects = new List<GameObject>();
+
+    public static int sleepsOutsideGame = 0;
+
     public static void AddPlant(PlantGrowth plantGrowth)
     {
         allPlants.Add(plantGrowth);
@@ -22,11 +26,23 @@ public static class AllPlantsManager
             plant.Grow();
     }
 
-    public static IEnumerator IEGrowAllPlants()
+    public static IEnumerator IETryGrowAllPlants(int delay = 2)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(delay);
 
-		foreach (var plant in allPlants)
-			plant.Grow();
-	}
+        InstantlyGrowAllPlants();
+    }
+
+    private static void InstantlyGrowAllPlants()
+    {
+        foreach (var plant in allPlants)
+            plant.Grow();
+    }
+
+    public static void PlantsOnLevelChange(Scene scene, LoadSceneMode sceneLoadMode)
+    {
+        if (scene.name == "Game")
+            for (int i = 0; i < sleepsOutsideGame; i++)
+                InstantlyGrowAllPlants();
+    }
 }

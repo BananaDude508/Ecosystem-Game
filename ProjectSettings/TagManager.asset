@@ -8,6 +8,8 @@ TagManager:
   - CrowZone
   - original
   - PlantParent
+  - HomeRespawn
+  - ShopRespawn
   layers:
   - Default
   - TransparentFX
