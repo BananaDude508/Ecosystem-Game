@@ -51,6 +51,8 @@ public class PlantGrowth : MonoBehaviour
 
     private void UpdateSprite()
 	{
+		if (growthStages.Length <= growthStage || growthStage <0) return;
+
         sr.sprite = growthStages[growthStage];
 
         harvestReward = Mathf.Max(0, growthStage - harvestPenalty);

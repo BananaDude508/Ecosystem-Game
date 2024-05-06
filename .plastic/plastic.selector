@@ -1,0 +1,4 @@
+repository "Ecosystem-Game@BananaDude508@cloud"
+  path "/"
+    br "/main"
+    co "/main"

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static AllPlantsManager;
 
+
 public class GameManager : MonoBehaviour
 {
     public Transform player;
@@ -17,13 +18,16 @@ public class GameManager : MonoBehaviour
 
     private void GMOnLevelChange(Scene scene, LoadSceneMode loadSceneMode)
     {
+        if (scene.name == "Game")
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+
         switch (oldScene)
         {
             case "Shop":
-                player = GameObject.FindGameObjectWithTag("ShopRespawn").transform;
+                player.position = GameObject.FindGameObjectWithTag("ShopRespawn").transform.position;
                 break;
             case "Home":
-                player = GameObject.FindGameObjectWithTag("HomeRespawn").transform;
+                player.position = GameObject.FindGameObjectWithTag("HomeRespawn").transform.position;
                 break;
         
             case "Game":

@@ -22,27 +22,30 @@ public static class AllPlantsManager
 
     public static void GrowAllPlants()
     {
+        Debug.Log(allPlants.Count);
         foreach (var plant in allPlants)
+        {
+            Debug.Log(plant.plantType);
             plant.Grow();
+        }
     }
 
     public static IEnumerator IETryGrowAllPlants(int delay = 2)
     {
         yield return new WaitForSeconds(delay);
 
-        InstantlyGrowAllPlants();
-    }
-
-    private static void InstantlyGrowAllPlants()
-    {
-        foreach (var plant in allPlants)
-            plant.Grow();
+        GrowAllPlants();
     }
 
     public static void PlantsOnLevelChange(Scene scene, LoadSceneMode sceneLoadMode)
     {
+        Debug.Log(sleepsOutsideGame);
         if (scene.name == "Game")
+        {
             for (int i = 0; i < sleepsOutsideGame; i++)
-                InstantlyGrowAllPlants();
+                GrowAllPlants();
+            sleepsOutsideGame = 0;
+        }
+
     }
 }

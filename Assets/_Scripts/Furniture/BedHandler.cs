@@ -21,9 +21,11 @@ public class BedHandler : MonoBehaviour
 
     private void Update()
 	{
-		if (playerNeaby && Input.GetKeyDown(KeyCode.E))
+		if (playerNeaby && !sleeping && Input.GetKeyDown(KeyCode.E))
 		{
 			bool doTheThings = SceneManager.GetActiveScene().name == "Game";
+
+			Debug.Log("trying to sleep " + doTheThings);
 
             if (TryAdvancingDay())
 			{

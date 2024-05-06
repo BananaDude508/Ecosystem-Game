@@ -6,7 +6,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static PlayerInventory;
 using static AllPlantsManager;
+using static SustainPlantsBetweenScenes;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerFarming : MonoBehaviour
 {
@@ -20,21 +22,27 @@ public class PlayerFarming : MonoBehaviour
 
 	public LayerMask canPlantOn;
 
-	private Transform plantParent;
+	public static Transform plantParent;
+
+	private bool inGameScene = true;
 
 
-	private void Awake()
-	{
-		plantParent = GameObject.FindGameObjectWithTag("PlantParent").transform;
-	}
+    private void Awake()
+    {
+		inGameScene = SceneManager.GetActiveScene().name == "Game";
+    }
 
-	private void Start()
+    private void Start()
 	{
 		UpdateAllPlantAmounts();
-	}
+        if (plantParent == null)
+			plantParent = instance.gameObject.transform;
+    }
 
-	private void Update()
+    private void Update()
 	{
+		if (!inGameScene) return;
+
 		Item equippedItem = items[itemTypes[currentPlant]];
 		if (!touchingPlant && !HoveringOverUI() && equippedItem.amount > 0 && Input.GetMouseButtonDown(0))
 		{
