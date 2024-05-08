@@ -12,9 +12,20 @@ public class PlayerInventoryInitialiser : MonoBehaviour
 		itemTypes = itemTypesINIT;
 
 		foreach (var type in itemTypes)
-			AddItem(type).amount = 1;
-
-		// foreach (var item in items)
-		// 	Debug.Log(item.Key);
+		{
+			Item item = AddItem(type);
+			switch (item.name)
+			{
+				case "wheat":
+					item.amount = 2;
+					break;
+				case "tomato":
+					item.amount = 1;
+					break;
+				default:
+					item.amount = 0;
+					break;
+			}
+		}
 	}
 }

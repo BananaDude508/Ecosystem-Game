@@ -23,14 +23,12 @@ public class BedHandler : MonoBehaviour
 	{
 		if (playerNeaby && !sleeping && Input.GetKeyDown(KeyCode.E))
 		{
-			bool doTheThings = SceneManager.GetActiveScene().name == "Game";
-
-			Debug.Log("trying to sleep " + doTheThings);
 
             if (TryAdvancingDay())
 			{
-				PlaySleepAnim(doTheThings);
-				if (doTheThings)
+				bool activeSceneIsGame = SceneManager.GetActiveScene().name == "Game";
+				PlaySleepAnim(activeSceneIsGame);
+                if (activeSceneIsGame)
 					StartCoroutine(IETryGrowAllPlants());
 				else 
 					sleepsOutsideGame++;

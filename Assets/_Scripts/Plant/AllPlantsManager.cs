@@ -39,7 +39,6 @@ public static class AllPlantsManager
 
     public static void PlantsOnLevelChange(Scene scene, LoadSceneMode sceneLoadMode)
     {
-        Debug.Log(sleepsOutsideGame);
         if (scene.name == "Game")
         {
             for (int i = 0; i < sleepsOutsideGame; i++)

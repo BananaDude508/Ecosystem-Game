@@ -2,91 +2,146 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static PlayerInventory;
+using static CustomFunctions;
+using static AllPlantsManager;
+using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
-    public ShopItem[] shopItems;
+    public static ShopManager instance;
+
+    public List<ShopItem> shopItems = new List<ShopItem>();
+    // public Button[] buyButtons;
+    // public Button[] sellButtons;
+    public TextMeshProUGUI[] buyPrices;
+    public TextMeshProUGUI[] sellPrices;
+    public TextMeshProUGUI[] inventoryAmounts;
+    public TextMeshProUGUI moneyText;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            // DontDestroyOnLoad(gameObject);
+
+            shopItems.Add(new ShopItem("Wheat", 10, 20)); // least expensive
+            shopItems.Add(new ShopItem("Tomato", 15, 15));
+            shopItems.Add(new ShopItem("Potato", 25, 10));
+            shopItems.Add(new ShopItem("Carrot", 55, 5)); // most expensive
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        SceneManager.sceneLoaded += OnLevelChange;
+    }
 
     public void Start()
     {
-        new ShopItem("wheat", "A farmers most basic crop, always in supply and in demand", 10, 10, 10, -1); // least expensive
-        // new ShopItem("Tomato"); 
-        // new ShopItem("Potato"); 
-        // new ShopItem("Carrot"); most expensive
+        for (int i = 0; i < 4; i++)
+        {
+            buyPrices[i].text = shopItems[i].price.ToString();
+            sellPrices[i].text = Mathf.RoundToInt(shopItems[i].price * 0.75f).ToString();
+            inventoryAmounts[i].text = items[shopItems[i].name.ToLower()].amount.ToString();
+            print(items[shopItems[i].name.ToLower()].amount.ToString());
+        }
+        UpdateMoney();
     }
 
-    public void ResetShop()
+    public void ShopNewDay()
     {
         foreach (var item in shopItems)
         {
-            item.UpdatePrice();
             item.Restock();
+            item.UpdatePrice();
         }
     }
-
-    public void BuyItem(ShopItem item)
+    
+    public void BuyItem(int itemID)
     {
-        item.Purchase();
+        ShopItem item = shopItems[itemID];
+
+        if (money < item.price) return;
+
+        items[item.name.ToLower()].amount++;
+        money -= item.price;
+
+        inventoryAmounts[itemID].text = items[item.name.ToLower()].ToString();
+        UpdateMoney();
     }
 
-    public void SellItem(Item item)
+    public void SellItem(int itemID)
     {
-        // sell item to shop, gain money from it
-        // item.Sell();
+        ShopItem item = shopItems[itemID];
+
+        if (items[item.name.ToLower()].amount <= 0) return;
+
+        items[item.name.ToLower()].amount--;
+        money += Mathf.RoundToInt(item.price * 0.75f);
+
+        inventoryAmounts[itemID].text = items[item.name.ToLower()].amount.ToString();
+        UpdateMoney();
     }
 
     public void ReturnToFarm()
     {
         SceneManager.LoadScene("Game");
     }
+    
+    public void UpdateMoney()
+    {
+        moneyText.text = "$" + money.ToString();
+    }
+
+    private void OnLevelChange(Scene scene, LoadSceneMode sceneLoadMode)
+    {
+        for (int i = 0; i < sleepsOutsideGame; i++)
+        {
+            ShopNewDay();
+        }
+    }
 }
 
 public class ShopItem
 {
     public string name;
-    public string description;
-    public int originalAmount;
-    public int amountPurchasedToday;
-    public int amountSoldToday;
-    public int stockModifier;
-    public int priceModifier;
     public int price;
+    private int day1Price;
+    public int stock;
+    private int day1Stock;
+    public int amountPurchased;
 
 
-    public ShopItem(string name, string description, int price, int amount, int stockModifier, int priceModifier)
+    /// <summary>
+    /// ShopItem initialiser
+    /// </summary>
+    /// <param name="name">The name of the item</param>
+    /// <param name="price">The basic/initial price of the item</param>
+    /// <param name="stock">The default/initial stock of the item</param>
+    public ShopItem(string name, int price, int stock)
     {
         this.name = name;
-        this.description = description;
         this.price = price;
-        this.originalAmount = amount;
-        this.stockModifier = stockModifier;
-        this.priceModifier = priceModifier;
-        this.amountPurchasedToday = 0;
+        this.day1Price = price;
+        this.stock = stock;
+        this.day1Stock = stock;
+        this.amountPurchased = 0;
+    } 
+
+    public void Restock()
+    {
+        amountPurchased = 0;
+        stock += Random.Range(-2, 2);
+        stock = stock.Limit(day1Stock - 3, day1Stock + 4);
     }
 
-	public int UpdatePrice()
+    public void UpdatePrice()
     {
-		price *= Mathf.RoundToInt(Random.Range(0.5f, 1.5f) * (10 + amountSoldToday - amountPurchasedToday)) - price + priceModifier;
-        // find a way to limit price so it doesnt shoot up to infinity over time
-        return price;
-	}
-
-    public int Restock()
-    {
-        amountPurchasedToday = 0;
-        originalAmount = Mathf.Clamp(originalAmount + Random.Range(-2, 2), 5, 10) + stockModifier;
-        return originalAmount;
-    }
-
-    public bool Purchase()
-    {
-        if (amountPurchasedToday >= originalAmount) return false;
-
-        amountPurchasedToday++;
-        money -= price;
-        // Add to player inventory
-
-        return true;
+        price = Mathf.RoundToInt(price * Random.Range(0.9f, 1.1f));
+        price = Mathf.RoundToInt(((float)price).Limit(day1Price * 0.6f, day1Price * 1.4f));
     }
 }

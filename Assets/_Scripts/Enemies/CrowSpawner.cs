@@ -16,7 +16,7 @@ public class CrowSpawner : MonoBehaviour
     public int maxDamage = 3;
 
     [HideInInspector]
-    public bool scarecrowPlaced;
+    public bool scarecrowPlaced = false;
 
     public static CrowSpawner instance;
 
@@ -26,12 +26,12 @@ public class CrowSpawner : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += CrowsOnLevelChange;
         }
         else if (instance != this)
         {
             Destroy(gameObject);
         }
+        SceneManager.sceneLoaded += CrowsOnLevelChange;
     }
 
     public void TrySpawningCrows()
