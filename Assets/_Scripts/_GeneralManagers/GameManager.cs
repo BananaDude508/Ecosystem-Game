@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += GMOnLevelChange;
     }
 
+    private void GMOnLevelChange(Scene scene, LoadSceneMode loadSceneMode)
     {
         if (scene.name == "Game")
             player = GameObject.FindGameObjectWithTag("Player").transform;
