@@ -136,5 +136,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9d83ed70a06fa4f948408c2a446d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 764268683966574685}
   flySpeed: 7.5

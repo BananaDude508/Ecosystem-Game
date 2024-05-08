@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2070124}
   - component: {fileID: 2070123}
   - component: {fileID: 2070122}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: PlayerCanvas
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,13 +114,13 @@ GameObject:
   - component: {fileID: 64056362}
   - component: {fileID: 64056363}
   - component: {fileID: 7780868913132814075}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CrowDespawnZone
   m_TagString: CrowZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &64056362
 Transform:
   m_ObjectHideFlags: 0
@@ -194,9 +194,9 @@ GameObject:
   - component: {fileID: 468512178}
   - component: {fileID: 468512177}
   - component: {fileID: 468512176}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: amount
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -329,9 +329,9 @@ GameObject:
   - component: {fileID: 500491540}
   - component: {fileID: 500491542}
   - component: {fileID: 500491541}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: amount
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -464,7 +464,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -550,9 +550,9 @@ GameObject:
   - component: {fileID: 597996374}
   - component: {fileID: 597996373}
   - component: {fileID: 597996372}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Potato
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -708,9 +708,9 @@ GameObject:
   - component: {fileID: 920707315}
   - component: {fileID: 920707314}
   - component: {fileID: 920707313}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Overlay
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -807,9 +807,9 @@ GameObject:
   - component: {fileID: 1285199168}
   - component: {fileID: 1285199167}
   - component: {fileID: 1285199166}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Wheat
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -965,9 +965,9 @@ GameObject:
   - component: {fileID: 1363665795}
   - component: {fileID: 1363665794}
   - component: {fileID: 1363665793}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Plants
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1069,9 +1069,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1376086613}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CameraRig
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1104,9 +1104,9 @@ GameObject:
   - component: {fileID: 1564073257}
   - component: {fileID: 1564073256}
   - component: {fileID: 1564073255}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: amount
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1241,9 +1241,9 @@ GameObject:
   - component: {fileID: 1599709984}
   - component: {fileID: 1599709983}
   - component: {fileID: 1599709982}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Tomato
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1398,9 +1398,9 @@ GameObject:
   - component: {fileID: 1736394738}
   - component: {fileID: 1736394737}
   - component: {fileID: 1736394736}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: amount
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1535,9 +1535,9 @@ GameObject:
   - component: {fileID: 1927728953}
   - component: {fileID: 1927728952}
   - component: {fileID: 1927728951}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Carrot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1695,7 +1695,7 @@ GameObject:
   - component: {fileID: 688262295}
   - component: {fileID: 8185029379274197639}
   - component: {fileID: 1171120767889438446}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1780,7 +1780,11 @@ MonoBehaviour:
   - {fileID: 500491541}
   plantLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
+  canPlantOn:
+    serializedVersion: 2
+    m_Bits: 256
+  plantParent: {fileID: 0}
 --- !u!58 &8185029379274197639
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1821,9 +1825,9 @@ GameObject:
   - component: {fileID: 2549138432224922320}
   - component: {fileID: 8221635821665664338}
   - component: {fileID: 1908197830}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1927,9 +1931,9 @@ GameObject:
   - component: {fileID: 5114248472588808359}
   - component: {fileID: 9192263958145020616}
   - component: {fileID: 1082844258944772114}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: PopupText
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

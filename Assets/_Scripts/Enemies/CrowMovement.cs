@@ -47,7 +47,7 @@ public class CrowMovement : MonoBehaviour
     public void FlyAway(Transform target)
     {
         transform.right = target.position - transform.position;
-        spriteRenderer.flipY = transform.rotation.eulerAngles.z <= 270;
+        spriteRenderer.flipY = transform.rotation.eulerAngles.z <= 270 && transform.rotation.eulerAngles.z >= 90;
     }
 }
 

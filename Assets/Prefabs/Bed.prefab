@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2371528016055536847}
   - component: {fileID: 2578312651752564960}
   - component: {fileID: 898715225}
+  - component: {fileID: 6654682246695011050}
   m_Layer: 0
   m_Name: Bed
   m_TagString: Untagged
@@ -156,6 +157,8 @@ MonoBehaviour:
   UIElementsToHideOvernight:
   - {fileID: 0}
   - {fileID: 0}
+  crowSpawner: {fileID: 0}
+  nearbyPopupText: Press 'e' to sleep
 --- !u!61 &898715225
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -182,3 +185,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &6654682246695011050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937155849490899357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e37689403d61b6845a020f1ef9342c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupText: Press 'e' to sleep

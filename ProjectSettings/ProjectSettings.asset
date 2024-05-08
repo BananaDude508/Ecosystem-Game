@@ -867,11 +867,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 38b1e2f2-db76-4c3f-9b28-4ad9ce5e9319
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Ecosystem-Game
+  organizationId: bananadude508
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 

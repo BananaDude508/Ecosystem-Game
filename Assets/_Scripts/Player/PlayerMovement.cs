@@ -8,7 +8,9 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
 
-	public float moveSpeed = 10f;
+    private Vector2 moveDirection;
+
+    public float moveSpeed = 10f;
 	public float slowdown = 1f;
 
 
@@ -25,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
 		rb.AddForce((!sleeping ? (moveDirection * moveSpeed) : Vector2.zero) - rb.velocity * slowdown); // only move if not sleeping, always slowdown
 	}
 
-	private Vector2 moveDirection;
 	private void GetMovementDirection()
 	{
 		moveDirection.x = Input.GetAxisRaw("Horizontal");

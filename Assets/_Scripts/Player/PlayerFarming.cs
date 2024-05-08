@@ -6,7 +6,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static PlayerInventory;
 using static AllPlantsManager;
+using static SustainPlantsBetweenScenes;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerFarming : MonoBehaviour
 {
@@ -18,18 +20,34 @@ public class PlayerFarming : MonoBehaviour
 	public LayerMask plantLayer;
 	private bool touchingPlant = false;
 
+	public LayerMask canPlantOn;
 
-	private void Start()
+	public static Transform plantParent;
+
+	private bool inGameScene = true;
+
+
+    private void Awake()
+    {
+		inGameScene = SceneManager.GetActiveScene().name == "Game";
+    }
+
+    private void Start()
 	{
 		UpdateAllPlantAmounts();
-	}
+        if (plantParent == null)
+			plantParent = instance.gameObject.transform;
+    }
 
-	private void Update()
+    private void Update()
 	{
+		if (!inGameScene) return;
+
 		Item equippedItem = items[itemTypes[currentPlant]];
 		if (!touchingPlant && !HoveringOverUI() && equippedItem.amount > 0 && Input.GetMouseButtonDown(0))
 		{
-			Instantiate(plants[currentPlant], transform.position.Round(), Quaternion.identity);
+			if (!PlantBoundsAllowed()) return;
+			Instantiate(plants[currentPlant], transform.position.Round(), Quaternion.identity, plantParent);
 			equippedItem.amount--;
 			UpdatePlantAmount(equippedItem);
 		}
@@ -98,9 +116,19 @@ public class PlayerFarming : MonoBehaviour
 
 		// This is the bounding box for the inventory. will need to find a
 		// better solution if more ui interactables are added
+		// should have another scene for shop or whatever so this wont ever be called there either
 		return pos.x >= 585
 			&& pos.x <= 1335
 		    && pos.y >= 25
 		    && pos.y <= 225;
+	}
+
+	private bool PlantBoundsAllowed()
+	{
+        Collider2D[] bBox = Physics2D.OverlapBoxAll(transform.position.Round(), new Vector2(0.75f, 0.75f), 0, ~canPlantOn);
+		
+		foreach (var collider in bBox) if (!collider.isTrigger) return false;
+
+		return true;
 	}
 }

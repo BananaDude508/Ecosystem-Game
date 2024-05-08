@@ -16,6 +16,7 @@ public static class PlayerInventory
 
     public static Item AddItem(string name)
     {
+        if (items.ContainsKey(name)) return new Item();
         Item item = new Item(name);
         items.Add(name, item);
         return item;
@@ -32,6 +33,12 @@ public class Item
     {
         this.name = name;
         amount = 0;
+    }
+
+    public Item()
+    {
+        this.name = null;
+        this.amount = -1;
     }
 
     public void AddFromShop(ShopItem shopItem, int amount)

@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Plant
   - CrowZone
+  - original
+  - PlantParent
+  - HomeRespawn
+  - ShopRespawn
   layers:
   - Default
   - TransparentFX
@@ -15,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Player
   - 
   - Plant
   - 
