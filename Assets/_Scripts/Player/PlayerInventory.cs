@@ -16,7 +16,7 @@ public static class PlayerInventory
 
     public static Item AddItem(string name)
     {
-        if (items.ContainsKey(name)) return new Item();
+        if (Exists(name)) return new Item();
         Item item = new Item(name);
         items.Add(name, item);
         return item;
@@ -55,8 +55,13 @@ public class Item
 		items[newItem.name].amount += amount;
 	}
 
-    public bool Exists(Item item)
+    public bool Exists(this Item item)
     {
         return items.ContainsKey(item.name);
+    }
+
+    public bool Exists(string name)
+    {
+        return items.ContainsKey(name);
     }
 }
