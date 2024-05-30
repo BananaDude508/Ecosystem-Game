@@ -10,6 +10,7 @@ public class PlantGrowth : MonoBehaviour
 	public Sprite[] growthStages;
 	public int growthStage = 0;
 	public string plantType = "wheat";
+	public bool grows = true;
 
 	[SerializeField] private int harvestPenalty = 0;
     [HideInInspector] public int harvestReward = 0;
@@ -17,6 +18,8 @@ public class PlantGrowth : MonoBehaviour
 	private void Awake()
 	{
 		AddPlant(this);
+
+		if (plantType == "scarecrow") scarecrowPlaced = true;
 	}
 
 	private void Start()
@@ -35,6 +38,8 @@ public class PlantGrowth : MonoBehaviour
 
 	public void HurtByCrow(int damage)
 	{
+		if (!grows) return;
+
 		growthStage -= damage;
 
 		if (growthStage <= 0)
@@ -51,7 +56,7 @@ public class PlantGrowth : MonoBehaviour
 
     private void UpdateSprite()
 	{
-		if (growthStages.Length <= growthStage || growthStage <0) return;
+		if (!grows || growthStages.Length <= growthStage || growthStage <0) return;
 
         sr.sprite = growthStages[growthStage];
 

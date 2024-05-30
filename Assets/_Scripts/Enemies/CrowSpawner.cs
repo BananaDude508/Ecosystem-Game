@@ -15,9 +15,6 @@ public class CrowSpawner : MonoBehaviour
     public int minDamage = 0;
     public int maxDamage = 3;
 
-    [HideInInspector]
-    public bool scarecrowPlaced = false;
-
     public static CrowSpawner instance;
 
     private void Awake()

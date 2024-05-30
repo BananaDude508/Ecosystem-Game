@@ -31,6 +31,7 @@ public class ShopManager : MonoBehaviour
             shopItems.Add(new ShopItem("Tomato", 15, 15));
             shopItems.Add(new ShopItem("Potato", 25, 10));
             shopItems.Add(new ShopItem("Carrot", 55, 5)); // most expensive
+            shopItems.Add(new ShopItem("Scarecrow", 100, 1));
         }
         else if (instance != this)
         {

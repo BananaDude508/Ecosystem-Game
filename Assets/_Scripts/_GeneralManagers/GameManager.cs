@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static AllPlantsManager;
+using static PlayerInventory;
 
 
 public class GameManager : MonoBehaviour
 {
     public Transform player;
     public string oldScene = "";
+
+    public int PlayerMoney
+    {
+        get { return money; }
+        set { money = value;  }
+    }
 
     private void Awake()
     {

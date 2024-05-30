@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static AllPlantsManager;
 
 public static class DayNightManager
 {
@@ -11,6 +12,7 @@ public static class DayNightManager
 	{
 		if (sleeping) return false;
 		currentDay++;
+
 		return true;
 	}
 }

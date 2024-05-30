@@ -10,6 +10,8 @@ public static class AllPlantsManager
 
     public static int sleepsOutsideGame = 0;
 
+    public static bool scarecrowPlaced = false;
+
     public static void AddPlant(PlantGrowth plantGrowth)
     {
         allPlants.Add(plantGrowth);
@@ -39,6 +41,15 @@ public static class AllPlantsManager
 
     public static void PlantsOnLevelChange(Scene scene, LoadSceneMode sceneLoadMode)
     {
+        if (sleepsOutsideGame > 0)
+        {
+			scarecrowPlaced = false;
+
+			foreach (var plant in allPlants)
+				if (plant.name == "scarecrow")
+					allPlants.Remove(plant);
+		}
+
         if (scene.name == "Game")
         {
             for (int i = 0; i < sleepsOutsideGame; i++)

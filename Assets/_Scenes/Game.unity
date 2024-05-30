@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 645828}
   - component: {fileID: 645827}
   - component: {fileID: 645829}
+  - component: {fileID: 645830}
   m_Layer: 0
   m_Name: borders
   m_TagString: Untagged
@@ -16818,6 +16819,27 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
+--- !u!50 &645830
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645825}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &164733034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16887,22 +16909,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 597996371, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 688262295, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
-      propertyPath: plantParent
-      value: 
-      objectReference: {fileID: 225983685}
-    - target: {fileID: 920707314, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 920707314, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 920707314, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
-      propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1285199165, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
@@ -17047,6 +17053,46 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2439805471372173067, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7595276218076531748, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7595276218076531748, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7595276218076531748, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7595276218076531748, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8451123789109265313, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8451123789109265313, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8451123789109265313, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8451123789109265313, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8451123789109265313, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8451123789109265313, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -26790,6 +26836,7 @@ MonoBehaviour:
   - tomato
   - potato
   - carrot
+  - scarecrow
 --- !u!114 &845062174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26820,7 +26867,6 @@ MonoBehaviour:
   spawnRarity: 10
   minDamage: 0
   maxDamage: 3
-  scarecrowPlaced: 0
 --- !u!1 &1051867263
 GameObject:
   m_ObjectHideFlags: 0
