@@ -26849,8 +26849,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3424fa1cb25505469c7a3729c9983c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2018257031}
-  oldScene: 
+  crowSpawner: {fileID: 845062175}
+  player: {fileID: 2018257037}
+  oldScene: Game
 --- !u!114 &845062175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27002,9 +27003,9 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2018257031 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 997988973977929431, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+--- !u!4 &2018257037 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2439805471372173067, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
   m_PrefabInstance: {fileID: 164733034}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2108087607 stripped

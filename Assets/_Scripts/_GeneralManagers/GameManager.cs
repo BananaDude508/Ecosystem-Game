@@ -4,29 +4,43 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static AllPlantsManager;
 using static PlayerInventory;
+using static CrowSpawner;
+using Unity.VisualScripting;
 
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+    public CrowSpawner crowSpawner;
+
     public Transform player;
     public string oldScene = "";
 
-    public int PlayerMoney
-    {
-        get { return money; }
-        set { money = value;  }
-    }
 
     private void Awake()
     {
-        SceneManager.sceneLoaded += PlantsOnLevelChange;
-        SceneManager.sceneLoaded += GMOnLevelChange;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        if (instance != this)
+        {
+            SceneManager.sceneLoaded += PlantsOnLevelChange;
+            SceneManager.sceneLoaded += GMOnLevelChange;
+            SceneManager.sceneLoaded += CrowsOnLevelChange;
+
+            Destroy(gameObject);
+        }
     }
 
     private void GMOnLevelChange(Scene scene, LoadSceneMode loadSceneMode)
     {
         if (scene.name == "Game")
+        {
             player = GameObject.FindGameObjectWithTag("Player").transform;
+            Invoke("ResetSleeps", Time.deltaTime);
+        }
 
         switch (oldScene)
         {
@@ -38,10 +52,22 @@ public class GameManager : MonoBehaviour
                 break;
         
             case "Game":
+                break;
             default:
                 break;
         }
 
         oldScene = scene.name;
+    }
+    public void CrowsOnLevelChange(Scene scene, LoadSceneMode sceneLoadMode)
+    {
+        if (scene.name == "Game")
+            for (int i = 0; i < sleepsOutsideGame; i++)
+                crowSpawner.TrySpawningCrows();
+    }
+
+    private void ResetSleeps()
+    {
+        sleepsOutsideGame = 0;
     }
 }

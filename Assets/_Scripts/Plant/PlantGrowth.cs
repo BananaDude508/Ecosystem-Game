@@ -11,6 +11,7 @@ public class PlantGrowth : MonoBehaviour
 	public int growthStage = 0;
 	public string plantType = "wheat";
 	public bool grows = true;
+	[HideInInspector] public int scarecrowDays = 0;
 
 	[SerializeField] private int harvestPenalty = 0;
     [HideInInspector] public int harvestReward = 0;

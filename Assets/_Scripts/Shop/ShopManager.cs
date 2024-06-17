@@ -27,10 +27,10 @@ public class ShopManager : MonoBehaviour
             instance = this;
             // DontDestroyOnLoad(gameObject);
 
-            shopItems.Add(new ShopItem("Wheat", 10, 20)); // least expensive
+            shopItems.Add(new ShopItem("Wheat", 10, 20)); // least expensive plant
             shopItems.Add(new ShopItem("Tomato", 15, 15));
             shopItems.Add(new ShopItem("Potato", 25, 10));
-            shopItems.Add(new ShopItem("Carrot", 55, 5)); // most expensive
+            shopItems.Add(new ShopItem("Carrot", 55, 5)); // most expensive plant
             shopItems.Add(new ShopItem("Scarecrow", 100, 1));
         }
         else if (instance != this)
@@ -43,7 +43,7 @@ public class ShopManager : MonoBehaviour
 
     public void Start()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 5; i++)
         {
             buyPrices[i].text = shopItems[i].price.ToString();
             sellPrices[i].text = Mathf.RoundToInt(shopItems[i].price * 0.75f).ToString();
@@ -71,7 +71,7 @@ public class ShopManager : MonoBehaviour
         items[item.name.ToLower()].amount++;
         money -= item.price;
 
-        inventoryAmounts[itemID].text = items[item.name.ToLower()].ToString();
+        inventoryAmounts[itemID].text = items[item.name.ToLower()].amount.ToString();
         UpdateMoney();
     }
 
