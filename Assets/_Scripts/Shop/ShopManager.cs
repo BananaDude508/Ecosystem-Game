@@ -48,7 +48,7 @@ public class ShopManager : MonoBehaviour
             buyPrices[i].text = shopItems[i].price.ToString();
             sellPrices[i].text = Mathf.RoundToInt(shopItems[i].price * 0.75f).ToString();
             inventoryAmounts[i].text = items[shopItems[i].name.ToLower()].amount.ToString();
-            print(items[shopItems[i].name.ToLower()].amount.ToString());
+            // print(items[shopItems[i].name.ToLower()].amount.ToString());
         }
         UpdateMoney();
     }

@@ -30,7 +30,7 @@ public class Goal
             case 4:
                 goalType = "carrot";
                 break;
-            case 5:
+            case 5: 
                 goalType = "scarecrow";
                 break;
             default:

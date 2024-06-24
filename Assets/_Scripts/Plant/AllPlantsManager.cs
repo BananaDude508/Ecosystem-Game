@@ -38,27 +38,4 @@ public static class AllPlantsManager
 
         GrowAllPlants();
     }
-
-    public static void PlantsOnLevelChange(Scene scene, LoadSceneMode sceneLoadMode)
-    {
-        if (sleepsOutsideGame > 0)
-        {
-            scarecrowPlaced = false;
-
-            foreach (var plant in allPlants)
-                if (plant.plantType == "scarecrow")
-                {
-                    plant.scarecrowDays += 1;
-
-                    if (plant.scarecrowDays >= 3)
-                        allPlants.Remove(plant);
-                }
-
-            if (scene.name == "Game")
-            {
-                for (int i = 0; i < sleepsOutsideGame; i++)
-                    GrowAllPlants();
-            }
-        }
-    }
 }

@@ -10,6 +10,7 @@ TagManager:
   - PlantParent
   - HomeRespawn
   - ShopRespawn
+  - InventoryButton
   layers:
   - Default
   - TransparentFX

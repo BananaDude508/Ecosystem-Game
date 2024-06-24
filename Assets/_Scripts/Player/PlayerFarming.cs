@@ -13,9 +13,10 @@ using UnityEngine.SceneManagement;
 public class PlayerFarming : MonoBehaviour
 {
 	public GameObject[] plants;
-	public int currentPlant;
+	public static int currentPlant; // current plant selection
 
 	public TextMeshProUGUI[] plantTexts;
+	public GameObject[] inventoryButtons;
 
 	public LayerMask plantLayer;
 	private bool touchingPlant = false;
@@ -26,10 +27,18 @@ public class PlayerFarming : MonoBehaviour
 
 	private bool inGameScene = true;
 
+	public EventSystemKeepSelected buttonHighlighter;
+
+	public TextMeshProUGUI moneyText;
+
 
     private void Awake()
     {
 		inGameScene = SceneManager.GetActiveScene().name == "Game";
+		if (inGameScene)
+		{
+			buttonHighlighter.defaultSelected = inventoryButtons[currentPlant];
+		}
     }
 
     private void Start()
@@ -66,6 +75,8 @@ public class PlayerFarming : MonoBehaviour
 			RemovePlant(targetPlant);
 			Destroy(targetPlant.gameObject);
 		}
+
+		moneyText.text = money.ToString();
 	}
 
 	private PlantGrowth GetPlantCollision()
@@ -104,10 +115,7 @@ public class PlayerFarming : MonoBehaviour
 	public void UpdateAllPlantAmounts()
 	{
 		foreach (var item in items)
-		{
 			UpdatePlantAmount(item.Key);
-
-		}
 	}
 
 	private bool HoveringOverUI()
@@ -116,7 +124,6 @@ public class PlayerFarming : MonoBehaviour
 
 		// This is the bounding box for the inventory. will need to find a
 		// better solution if more ui interactables are added
-		// should have another scene for shop or whatever so this wont ever be called there either
 		return pos.x >= 585
 			&& pos.x <= 1335
 		    && pos.y >= 25

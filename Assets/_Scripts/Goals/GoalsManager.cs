@@ -3,46 +3,61 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using static PlayerInventory;
+using static AllPlantsManager;
 
 public class GoalsManager : MonoBehaviour
 {
-    public static Goal currentGoal;
     public TextMeshProUGUI goalText;
 
-    public int originalGoalCount;
+    public static int goalCount;
 
-    private void Awake()
+    private void Start()
     {
         if (currentGoal == null) StartNewGoal();
     }
 
     private void Update()
     {
-        if (IsGoalCompleted())
-        {
-            StartNewGoal();
-            money += Random.Range(20, 51) * 10;
-        }
+        goalText.text = currentGoal.ToString();
+
+        UpdateGoalProgress();
     }
 
     public void StartNewGoal()
     {
         currentGoal = new Goal();
-        goalText.text = currentGoal.ToString();
-        print(goalText.text);
 
         if (currentGoal.goalType == "money")
-            originalGoalCount = money;
+            goalCount = money;
+        else if (currentGoal.goalType == "scarecrow" && scarecrowPlaced)
+            StartNewGoal();
         else
-            originalGoalCount = items[currentGoal.goalType].amount;
+            goalCount = items[currentGoal.goalType].amount;
     }
 
-    public bool IsGoalCompleted()
+    public void UpdateGoalProgress()
     {
+       
         if (currentGoal.goalType == "money")
-            return (originalGoalCount + currentGoal.amount) < money;
+        {
+            currentGoal.amount += goalCount - money;
+            goalCount = money;
+        }
+        else if (currentGoal.goalType == "scarecrow")
+        {
+            currentGoal.amount = scarecrowPlaced ? 0 : 1;
+        }
         else
-            return (originalGoalCount + currentGoal.amount) < items[currentGoal.goalType].amount;
+        {
+            currentGoal.amount += goalCount - items[currentGoal.goalType].amount;
+            goalCount = items[currentGoal.goalType].amount;
+        }
+
+        if (currentGoal.amount <= 0)
+        {
+            StartNewGoal();
+            money += Random.Range(20, 51) * 10;
+        }
     }
 }
 

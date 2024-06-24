@@ -14,6 +14,8 @@ public static class PlayerInventory
     public static Dictionary<string, Item> items = new Dictionary<string, Item>();
     public static List<string> itemTypes = new List<string>();
 
+    public static Goal currentGoal;
+
     public static Item AddItem(string name)
     {
         if (items.ContainsKey(name)) return new Item();

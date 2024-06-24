@@ -16911,6 +16911,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 688262295, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: buttonHighlighter
+      value: 
+      objectReference: {fileID: 1924085480}
     - target: {fileID: 1285199165, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -26946,6 +26950,7 @@ GameObject:
   - component: {fileID: 1924085479}
   - component: {fileID: 1924085478}
   - component: {fileID: 1924085477}
+  - component: {fileID: 1924085480}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -26966,8 +26971,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
+  m_HorizontalAxis: none
+  m_VerticalAxis: none
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
@@ -27003,6 +27008,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1924085480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924085476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41ce6a7578ac8b3479f7a553fe4085e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultSelected: {fileID: 0}
 --- !u!4 &2018257037 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2439805471372173067, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
