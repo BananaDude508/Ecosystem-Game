@@ -9,6 +9,7 @@ using static AllPlantsManager;
 using static SustainPlantsBetweenScenes;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
 
 public class PlayerFarming : MonoBehaviour
 {
@@ -124,10 +125,14 @@ public class PlayerFarming : MonoBehaviour
 
 		// This is the bounding box for the inventory. will need to find a
 		// better solution if more ui interactables are added
-		return pos.x >= 585
-			&& pos.x <= 1335
-		    && pos.y >= 25
-		    && pos.y <= 225;
+
+		return pos.x >= 0.30 * Screen.width   // 585/1920
+			&& pos.x <= 0.70 * Screen.width   // 1335/1920
+		    && pos.y >= 0.02 * Screen.height  // 25/1080
+		    && pos.y <= 0.21 * Screen.height; // 225/1080
+
+		// the values arent random, they are the (rounded) percentage
+		// of how far across the screen they are, % shown on right comment
 	}
 
 	private bool PlantBoundsAllowed()
