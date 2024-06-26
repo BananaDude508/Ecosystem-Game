@@ -16827,7 +16827,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645825}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -17059,6 +17059,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3752349803797358932, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: playerSoundController
+      value: 
+      objectReference: {fileID: 164733037}
     - target: {fileID: 7595276218076531748, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -17101,6 +17105,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+--- !u!114 &164733037 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 164733037, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+  m_PrefabInstance: {fileID: 164733034}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b905b949a3f7a4bac6e59d5ec8c035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &225983684
 GameObject:
   m_ObjectHideFlags: 0

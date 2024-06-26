@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,12 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 moveDirection;
 
+	public PlayerSoundController playerSoundController;
+
     public float moveSpeed = 10f;
 	public float slowdown = 1f;
+
+	public bool moving = false;
 
 
 	private void Awake()
@@ -25,6 +30,17 @@ public class PlayerMovement : MonoBehaviour
 
 		// transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
 		rb.AddForce((!sleeping ? (moveDirection * moveSpeed) : Vector2.zero) - rb.velocity * slowdown); // only move if not sleeping, always slowdown
+		
+		if (!moving && moveDirection != Vector2.zero)
+		{
+			moving = true;
+			playerSoundController.StartWalkingLoop();
+		}
+		else if (moving && moveDirection == Vector2.zero)
+		{
+			moving = false;
+			playerSoundController.StopWalkingLoop();
+		}
 	}
 
 	private void GetMovementDirection()
