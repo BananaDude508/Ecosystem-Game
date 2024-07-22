@@ -39,6 +39,8 @@ public class Goal
         }
         if (goalType == "money")
             amount = Random.Range(100, 501);
+        else if (goalType == "scarecrow")
+            amount = 1;
         else
             amount = Random.Range(5, 16);
     }

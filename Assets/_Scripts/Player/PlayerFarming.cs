@@ -2,14 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using Unity.VisualScripting;
 using UnityEngine;
 using static PlayerInventory;
 using static AllPlantsManager;
 using static SustainPlantsBetweenScenes;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEngine.Rendering;
 
 public class PlayerFarming : MonoBehaviour
 {
@@ -44,7 +42,7 @@ public class PlayerFarming : MonoBehaviour
 
     private void Start()
 	{
-		UpdateAllPlantAmounts();
+		UpdatePlantAmounts();
         if (plantParent == null)
 			plantParent = instance.gameObject.transform;
     }
@@ -59,7 +57,7 @@ public class PlayerFarming : MonoBehaviour
 			if (!PlantBoundsAllowed()) return;
 			Instantiate(plants[currentPlant], transform.position.Round(), Quaternion.identity, plantParent);
 			equippedItem.amount--;
-			UpdatePlantAmount(equippedItem);
+			UpdatePlantAmounts();
 		}
 
 		if (touchingPlant && Input.GetMouseButtonDown(1))
@@ -69,7 +67,7 @@ public class PlayerFarming : MonoBehaviour
 			string type = targetPlant.plantType;
 
 			items[type].amount += targetPlant.harvestReward;
-			UpdatePlantAmount(type);
+			UpdatePlantAmounts();
 			Debug.Log(targetPlant.harvestReward + " " + type + " gained");
 			Debug.Log("Current amount of " + type + " is " + items[type].amount);
 
@@ -103,20 +101,10 @@ public class PlayerFarming : MonoBehaviour
 		currentPlant = newPlantInvId;
 	}
 
-	public void UpdatePlantAmount(string plantType)
-	{
-		plantTexts[itemTypes.IndexOf(plantType)].text = items[plantType].amount.ToString();
-	}
-
-	void UpdatePlantAmount(Item plant)
-	{
-		UpdatePlantAmount(plant.name);
-	}
-
-	public void UpdateAllPlantAmounts()
-	{
-		foreach (var item in items)
-			UpdatePlantAmount(item.Key);
+	public void UpdatePlantAmounts()
+    {
+        foreach (var item in items)
+			plantTexts[itemTypes.IndexOf(item.Key)].text = items[item.Key].amount.ToString();
 	}
 
 	private bool HoveringOverUI()

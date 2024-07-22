@@ -11,6 +11,7 @@ public class GoalsManager : MonoBehaviour
 
     public static int goalCount;
 
+
     private void Start()
     {
         if (currentGoal == null) StartNewGoal();
