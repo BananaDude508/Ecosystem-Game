@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public CrowSpawner crowSpawner;
 
     public Transform player;
-    public string oldScene = "";
+    public string oldScene = "Game";
 
 
     private void Awake()
@@ -43,27 +43,28 @@ public class GameManager : MonoBehaviour
 
     private void GMOnLevelChange(Scene scene, LoadSceneMode loadSceneMode)
     {
+        print(oldScene);
         if (scene.name == "Game")
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
-        }
 
-        switch (oldScene)
-        {
-            case "Shop":
-                player.position = GameObject.FindGameObjectWithTag("ShopRespawn").transform.position;
-                break;
+            switch (oldScene)
+            {
+                case "Shop":
+                    player.position = GameObject.FindGameObjectWithTag("ShopRespawn").transform.position;
+                    break;
 
-            case "Home":
-                player.position = GameObject.FindGameObjectWithTag("HomeRespawn").transform.position;
-                instance.Invoke("ResetSleeps", Time.deltaTime);
-                break;
-        
-            case "Game":
-                break;
+                case "Home":
+                    player.position = GameObject.FindGameObjectWithTag("HomeRespawn").transform.position;
+                    instance.Invoke("ResetSleeps", Time.deltaTime);
+                    break;
 
-            default:
-                break;
+                case "Game":
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         oldScene = scene.name;

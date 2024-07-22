@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class PlayerPopups
+public static class PlayerPopups
 {
     public static TextMeshProUGUI popupText;
 

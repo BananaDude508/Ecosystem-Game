@@ -75,7 +75,7 @@ public class PlayerFarming : MonoBehaviour
 			Destroy(targetPlant.gameObject);
 		}
 
-		moneyText.text = money.ToString();
+		moneyText.text = '$' + money.ToString();
 	}
 
 	private PlantGrowth GetPlantCollision()

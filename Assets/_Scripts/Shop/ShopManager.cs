@@ -12,8 +12,6 @@ public class ShopManager : MonoBehaviour
 {
     public static ShopManager instance;
 
-    public bool restrictItems = false;
-
     public List<ShopItem> shopItems = new List<ShopItem>();
     // public Button[] buyButtons;
     // public Button[] sellButtons;
@@ -31,11 +29,8 @@ public class ShopManager : MonoBehaviour
 
             shopItems.Add(new ShopItem("Wheat", 10, 20)); // least expensive plant
             shopItems.Add(new ShopItem("Tomato", 15, 15));
-            if (!restrictItems)
-            {
-                shopItems.Add(new ShopItem("Potato", 25, 10));
-                shopItems.Add(new ShopItem("Carrot", 55, 5)); // most expensive plant
-            }
+            shopItems.Add(new ShopItem("Potato", 25, 10));
+            shopItems.Add(new ShopItem("Carrot", 55, 5)); // most expensive plant
             shopItems.Add(new ShopItem("Scarecrow", 100, 1));
         }
         else if (instance != this)
@@ -48,7 +43,7 @@ public class ShopManager : MonoBehaviour
 
     public void Start()
     {
-        for (int i = 0; i < shopItems.Count; i++)
+        for (int i = 0; i < 5; i++)
         {
             buyPrices[i].text = shopItems[i].price.ToString();
             sellPrices[i].text = Mathf.RoundToInt(shopItems[i].price * 0.75f).ToString();
@@ -93,10 +88,9 @@ public class ShopManager : MonoBehaviour
         UpdateMoney();
     }
 
-    public void ReturnToFarm(bool gotoTutorial=false)
+    public void ReturnToFarm()
     {
-        if (gotoTutorial) SceneManager.LoadScene("TutorialGame");
-        else SceneManager.LoadScene("Game");
+         SceneManager.LoadScene("Game");
     }
     
     public void UpdateMoney()
