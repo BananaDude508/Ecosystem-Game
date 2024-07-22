@@ -5,16 +5,28 @@ using UnityEngine;
 
 public class HideTutorials : MonoBehaviour
 {
-    public GameObject tutorialSigns;
+    public GameObject[] tutorialSigns;
 
     private bool nearbyPlayer = false;
 
+    static bool tutorialsHidden = false;
+
+
+    private void Start()
+    {
+        foreach (GameObject sign in tutorialSigns)
+            sign.SetActive(!tutorialsHidden);
+        gameObject.SetActive(!tutorialsHidden);
+    }
 
     private void Update()
     {
         if (nearbyPlayer && Input.GetKeyDown(KeyCode.E))
         {
-            Destroy(tutorialSigns);
+            tutorialsHidden = true;
+            foreach (GameObject sign in tutorialSigns)
+                sign.SetActive(!tutorialsHidden);
+            gameObject.SetActive(!tutorialsHidden);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
