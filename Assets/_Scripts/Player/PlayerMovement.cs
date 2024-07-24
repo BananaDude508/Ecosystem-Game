@@ -30,11 +30,16 @@ public class PlayerMovement : MonoBehaviour
 	private void FixedUpdate()
 	{
 		GetMovementDirection();
+        UpdateMovementAnim();
 
-		// transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
-		rb.AddForce((!sleeping ? (moveDirection * moveSpeed) : Vector2.zero) - rb.velocity * slowdown); // only move if not sleeping, always slowdown
-		
-		if (!moving && moveDirection != Vector2.zero)
+        if (sleeping)
+        {
+            rb.AddForce(Vector2.zero - rb.velocity * slowdown);
+            movementAudioSource.Stop();
+            return;
+        }
+
+        if (!moving && moveDirection != Vector2.zero)
 		{
 			moving = true;
 			movementAudioSource.loop = true;
@@ -45,14 +50,14 @@ public class PlayerMovement : MonoBehaviour
 		else if (moving && moveDirection == Vector2.zero)
 		{
 			moving = false;
-			movementAudioSource.Stop();
 			movementAudioSource.loop = false;
 		}
 
-		UpdateMovementAnim();
-	}
+        // transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+        rb.AddForce(moveDirection * moveSpeed - rb.velocity * slowdown); // only move if not sleeping, always slowdown
+    }
 
-	private void GetMovementDirection()
+    private void GetMovementDirection()
 	{
 		moveDirection.x = Input.GetAxisRaw("Horizontal");
 		moveDirection.y = Input.GetAxisRaw("Vertical");
@@ -61,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
 	private void UpdateMovementAnim()
 	{
-		if (!moving) { playerAnim.SetTrigger("Idle"); return; }
+		if (!moving || sleeping) { playerAnim.SetTrigger("Idle"); return; }
 
 		string direction = "Idle";
 
