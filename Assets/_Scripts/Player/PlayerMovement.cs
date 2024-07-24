@@ -50,8 +50,9 @@ public class PlayerMovement : MonoBehaviour
 		else if (moving && moveDirection == Vector2.zero)
 		{
 			moving = false;
+            movementAudioSource.Stop();
 			movementAudioSource.loop = false;
-		}
+        }
 
         // transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
         rb.AddForce(moveDirection * moveSpeed - rb.velocity * slowdown); // only move if not sleeping, always slowdown
