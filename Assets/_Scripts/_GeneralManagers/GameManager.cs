@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
 
     private void GMOnLevelChange(Scene scene, LoadSceneMode loadSceneMode)
     {
-        print(oldScene);
         if (scene.name == "Game")
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -72,26 +71,21 @@ public class GameManager : MonoBehaviour
 
     public void PlantsOnLevelChange(Scene scene, LoadSceneMode sceneLoadMode)
     {
-        if (sleepsOutsideGame > 0)
-        {
-            foreach (var plant in allPlants)
-                if (plant.plantType == "scarecrow")
-                {
-                    plant.scarecrowDays += 1;
+        if (scene.name != "Game") return;
 
-                    if (plant.scarecrowDays < 3) continue;
-
-                    StartCoroutine(IE_DeletePlant(plant, Time.deltaTime));
-                    
-                    scarecrowPlaced = false;
-                }
-
-            if (scene.name == "Game")
+        foreach (var plant in allPlants)
+            if (plant.plantType == "scarecrow")
             {
-                for (int i = 0; i < sleepsOutsideGame; i++)
-                    GrowAllPlants();
+                plant.scarecrowDays += sleepsOutsideGame;
+
+                if (plant.scarecrowDays < 3) continue;
+
+                StartCoroutine(IE_DeletePlant(plant, Time.deltaTime));
+                    
+                scarecrowPlaced = false;
             }
-        }
+
+        GrowAllPlants(sleepsOutsideGame);
     }
 
     public void CrowsOnLevelChange(Scene scene, LoadSceneMode sceneLoadMode)

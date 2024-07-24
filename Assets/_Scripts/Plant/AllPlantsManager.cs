@@ -22,13 +22,14 @@ public static class AllPlantsManager
         allPlants.Remove(plantGrowth);
     }
 
-    public static void GrowAllPlants()
+    public static void GrowAllPlants(int sleepsBetweenGame = 1)
     {
         // Debug.Log(allPlants.Count);
         foreach (var plant in allPlants)
         {
             // Debug.Log(plant.plantType);
-            plant.Grow();
+            for (int i = 0; i < sleepsBetweenGame; i++)
+                plant.Grow();
         }
     }
 

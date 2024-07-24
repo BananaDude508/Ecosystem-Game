@@ -33,7 +33,15 @@ public class PlantGrowth : MonoBehaviour
 		if (growthStage + 1 < growthStages.Length)
 		{
 			growthStage++;
-            UpdateSprite();
+			UpdateSprite();
+
+            if (growthStage <= 0)
+            {
+                SetPopupText("Plants were destroyed by crows last night");
+                Invoke("ClearPopupText", 3);
+                Invoke("DestroyThis", Time.deltaTime); // Delete the plant after a delay to stop the invalidoperationexception error
+                return;
+            }
         }
     }
 
@@ -57,7 +65,7 @@ public class PlantGrowth : MonoBehaviour
 
     private void UpdateSprite()
 	{
-		if (!grows || growthStages.Length <= growthStage || growthStage <0) return;
+		if (!grows || growthStages.Length <= growthStage || growthStage < 0) return;
 
         sr.sprite = growthStages[growthStage];
 
@@ -68,5 +76,6 @@ public class PlantGrowth : MonoBehaviour
 	{
 		allPlants.Remove(this);
 		Destroy(gameObject);
-	}
+		if (plantType == "scarecrow") scarecrowPlaced = false;
+    }
 }

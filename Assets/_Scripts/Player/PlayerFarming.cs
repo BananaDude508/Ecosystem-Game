@@ -65,7 +65,7 @@ public class PlayerFarming : MonoBehaviour
 			UpdatePlantAmounts();
             playerPlantSource.clip = plantingSound;
             playerPlantSource.Play();
-			print("playing sound");
+			// print("playing sound");
 		}
 
 		if (touchingPlant && Input.GetMouseButtonDown(1))

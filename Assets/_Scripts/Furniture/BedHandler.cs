@@ -23,15 +23,9 @@ public class BedHandler : MonoBehaviour
 	{
 		if (playerNeaby && !sleeping && Input.GetKeyDown(KeyCode.E))
 		{
-
             if (TryAdvancingDay())
 			{
-				bool activeSceneIsGame = SceneManager.GetActiveScene().name == "Game";
-				PlaySleepAnim(activeSceneIsGame);
-                if (activeSceneIsGame)
-					StartCoroutine(IETryGrowAllPlants());
-				else 
-					sleepsOutsideGame++;
+				sleepsOutsideGame++;
 			}
 
 		}
