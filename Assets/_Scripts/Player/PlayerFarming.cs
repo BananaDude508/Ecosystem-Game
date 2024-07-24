@@ -30,6 +30,11 @@ public class PlayerFarming : MonoBehaviour
 
 	public TextMeshProUGUI moneyText;
 
+	public AudioSource playerPlantSource;
+	public AudioClip plantingSound;
+
+	public AudioSource playerUISound;
+	public AudioClip uiClickSound;
 
     private void Awake()
     {
@@ -58,6 +63,9 @@ public class PlayerFarming : MonoBehaviour
 			Instantiate(plants[currentPlant], transform.position.Round(), Quaternion.identity, plantParent);
 			equippedItem.amount--;
 			UpdatePlantAmounts();
+            playerPlantSource.clip = plantingSound;
+            playerPlantSource.Play();
+			print("playing sound");
 		}
 
 		if (touchingPlant && Input.GetMouseButtonDown(1))
@@ -99,6 +107,12 @@ public class PlayerFarming : MonoBehaviour
 	public void PreparePlant(int newPlantInvId)
 	{
 		currentPlant = newPlantInvId;
+	}
+
+	public void PlayClickSound()
+	{
+		playerUISound.clip = uiClickSound;
+		playerUISound.Play();
 	}
 
 	public void UpdatePlantAmounts()
