@@ -42,6 +42,11 @@ public class GameManager : MonoBehaviour
         {
             Application.Quit();
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Screen.fullScreen = !Screen.fullScreen;
+        }
     }
 
     private void GMOnLevelChange(Scene scene, LoadSceneMode loadSceneMode)
