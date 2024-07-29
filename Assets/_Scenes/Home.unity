@@ -364,11 +364,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
---- !u!1 &14504624 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3098212862066488962, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
-  m_PrefabInstance: {fileID: 14504623}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &14504625 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 920707313, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
@@ -7432,8 +7427,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   overlayAnim: {fileID: 14504625}
-  UIElementsToHideOvernight:
-  - {fileID: 14504624}
 --- !u!61 &1058551923
 BoxCollider2D:
   m_ObjectHideFlags: 0

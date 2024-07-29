@@ -8,6 +8,8 @@ public class CrowMovement : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     public float flySpeed = 5;
+    [Tooltip("The chance every second that the crow will peck at the ground, between 0 and 1")] 
+    public float eatChance = 0.25f;
     int currentState = CrowState.Idle;
 
 
@@ -21,6 +23,12 @@ public class CrowMovement : MonoBehaviour
     {
         if (currentState == CrowState.Flying)
             transform.Translate(new Vector2(-flySpeed * Time.deltaTime, 0));
+
+        if (Random.Range(0f, 1f) <= eatChance * Time.deltaTime && currentState == CrowState.Idle)
+        {
+            ChangeState(CrowState.Eating);
+            Invoke("DefaultState", 0.933f);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -42,6 +50,11 @@ public class CrowMovement : MonoBehaviour
     {
         currentState = state;
         animator.SetInteger("State", currentState);
+    }
+
+    public void DefaultState()
+    {
+        ChangeState(CrowState.Idle);
     }
 
     public void FlyAway(Transform target)

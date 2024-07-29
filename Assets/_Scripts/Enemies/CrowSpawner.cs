@@ -17,7 +17,6 @@ public class CrowSpawner : MonoBehaviour // This is the script used for part 2 o
 
     public void TrySpawningCrows()
     {
-        print("trying to spawn crows");
         foreach (PlantGrowth plant in allPlants)
             if (Random.Range(0, spawnRarity + 1) == 0 && !scarecrowPlaced)
             {

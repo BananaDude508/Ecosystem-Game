@@ -10,7 +10,6 @@ public class BedHandler : MonoBehaviour
 	private bool playerNeaby = false;
 
 	public Animator overlayAnim;
-	public GameObject[] UIElementsToHideOvernight;
 
     private CrowSpawner crowSpawner;
 
@@ -22,47 +21,22 @@ public class BedHandler : MonoBehaviour
     private void Update()
 	{
 		if (playerNeaby && !sleeping && Input.GetKeyDown(KeyCode.E))
-		{
-            if (TryAdvancingDay())
+			if (TryAdvancingDay())
 			{
 				sleepsOutsideGame++;
+				overlayAnim.SetTrigger("sleeping");
 			}
-
-		}
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.tag == "PlayerParent")
-		{
 			playerNeaby = true;
-		}
 	}
 
 	private void OnTriggerExit2D(Collider2D other)
 	{
 		if (other.gameObject.tag == "PlayerParent")
-		{
 			playerNeaby = false;
-		}
-	}
-
-	private void PlaySleepAnim(bool summonCrows = true)
-	{
-		foreach (var element in UIElementsToHideOvernight)
-			element.SetActive(false);
-
-		overlayAnim.SetBool("sleeping", true);
-
-		if (summonCrows) crowSpawner.Invoke("TrySpawningCrows", 2);
-		Invoke("StopSleepAnim", 3.99f);
-	}
-
-	private void StopSleepAnim()
-	{
-        foreach (var element in UIElementsToHideOvernight)
-            element.SetActive(true);
-
-        overlayAnim.SetBool("sleeping", false);
 	}
 }

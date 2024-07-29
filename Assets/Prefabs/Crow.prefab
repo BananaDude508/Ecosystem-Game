@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 33
-  m_Sprite: {fileID: -932072970, guid: 078098d23de43a2469b678d6b33468eb, type: 3}
+  m_Sprite: {fileID: 391132193, guid: 078098d23de43a2469b678d6b33468eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -137,3 +137,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flySpeed: 7.5
+  eatChance: 0.25

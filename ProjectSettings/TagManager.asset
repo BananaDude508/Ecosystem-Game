@@ -12,6 +12,7 @@ TagManager:
   - ShopRespawn
   - InventoryButton
   - PlayerParent
+  - PlayerHideOvernight
   layers:
   - Default
   - TransparentFX
