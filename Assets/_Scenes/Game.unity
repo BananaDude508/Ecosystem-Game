@@ -17163,6 +17163,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 688262295, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: inventoryUI
+      value: 
+      objectReference: {fileID: 164733036}
+    - target: {fileID: 688262295, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
       propertyPath: buttonHighlighter
       value: 
       objectReference: {fileID: 1924085480}
@@ -17352,6 +17356,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+--- !u!1 &164733035 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1363665791, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+  m_PrefabInstance: {fileID: 164733034}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &164733036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164733035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5027fc5236684458bced8804d61dac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoveringOverInv: 0
 --- !u!1 &225983684
 GameObject:
   m_ObjectHideFlags: 0

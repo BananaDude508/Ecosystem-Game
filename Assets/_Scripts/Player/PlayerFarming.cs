@@ -30,6 +30,8 @@ public class PlayerFarming : MonoBehaviour
 
 	public TextMeshProUGUI moneyText;
 
+	public InventoryUI inventoryUI;
+
 	public AudioSource playerPlantSource;
 	public AudioClip plantingSound;
 
@@ -57,7 +59,7 @@ public class PlayerFarming : MonoBehaviour
 		if (!inGameScene) return;
 
 		Item equippedItem = items[itemTypes[currentPlant]];
-		if (!touchingPlant && !HoveringOverUI() && equippedItem.amount > 0 && Input.GetMouseButtonDown(0))
+		if (!touchingPlant && !inventoryUI.hoveringOverInv && equippedItem.amount > 0 && Input.GetMouseButtonDown(0))
 		{
 			if (!PlantBoundsAllowed()) return;
 			Instantiate(plants[currentPlant], transform.position.Round(), Quaternion.identity, plantParent);
@@ -121,21 +123,21 @@ public class PlayerFarming : MonoBehaviour
 			plantTexts[itemTypes.IndexOf(item.Key)].text = items[item.Key].amount.ToString();
 	}
 
-	private bool HoveringOverUI()
-	{
-		Vector3 pos = Input.mousePosition;
-
-		// This is the bounding box for the inventory. will need to find a
-		// better solution if more ui interactables are added
-
-		return pos.x >= 0.30 * Screen.width   // 585/1920
-			&& pos.x <= 0.70 * Screen.width   // 1335/1920
-		    && pos.y >= 0.02 * Screen.height  // 25/1080
-		    && pos.y <= 0.21 * Screen.height; // 225/1080
-
-		// the values arent random, they are the (rounded) percentage
-		// of how far across the screen they are, % shown on right comment
-	}
+	// private bool HoveringOverUI()
+	// {
+	// 	Vector3 pos = Input.mousePosition;
+	// 
+	// 	// This is the bounding box for the inventory. will need to find a
+	// 	// better solution if more ui interactables are added
+	// 
+	// 	return pos.x >= 0.30 * Screen.width   // 585/1920
+	// 		&& pos.x <= 0.70 * Screen.width   // 1335/1920
+	// 	    && pos.y >= 0.02 * Screen.height  // 25/1080
+	// 	    && pos.y <= 0.21 * Screen.height; // 225/1080
+	// 
+	// 	// the values arent random, they are the (rounded) percentage
+	// 	// of how far across the screen they are, % shown on right comment
+	// }
 
 	private bool PlantBoundsAllowed()
 	{
