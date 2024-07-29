@@ -33,7 +33,7 @@ public class CrowMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "PlayerParent")
         {
             ChangeState(CrowState.Flying);
             FlyAway(other.transform);
