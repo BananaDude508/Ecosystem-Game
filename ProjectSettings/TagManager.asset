@@ -11,6 +11,7 @@ TagManager:
   - HomeRespawn
   - ShopRespawn
   - InventoryButton
+  - PlayerParent
   layers:
   - Default
   - TransparentFX

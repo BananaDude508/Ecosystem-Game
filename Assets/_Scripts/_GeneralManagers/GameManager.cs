@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public CrowSpawner crowSpawner;
 
     public Transform player;
-    public string oldScene = "Game";
+    public static string oldScene = "";
 
 
     private void Awake()
@@ -25,12 +25,15 @@ public class GameManager : MonoBehaviour
         }
         if (instance != this)
         {
-            SceneManager.sceneLoaded += GMOnLevelChange;
-            SceneManager.sceneLoaded += PlantsOnLevelChange;
-            SceneManager.sceneLoaded += CrowsOnLevelChange;
-
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        SceneManager.sceneLoaded += GMOnLevelChange;
+        SceneManager.sceneLoaded += PlantsOnLevelChange;
+        SceneManager.sceneLoaded += CrowsOnLevelChange;
     }
 
     private void Update()
@@ -45,7 +48,7 @@ public class GameManager : MonoBehaviour
     {
         if (scene.name == "Game")
         {
-            player = GameObject.FindGameObjectWithTag("Player").transform;
+            player = GameObject.FindGameObjectWithTag("PlayerParent").transform;
 
             switch (oldScene)
             {

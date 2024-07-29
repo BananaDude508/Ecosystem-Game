@@ -9,13 +9,13 @@ public class PopupHandler : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "PlayerParent")
             SetPopupText(popupText);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "PlayerParent")
             if (CheckPopupText(popupText)) ClearPopupText();
     }
 }

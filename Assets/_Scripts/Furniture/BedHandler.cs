@@ -33,7 +33,7 @@ public class BedHandler : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.gameObject.tag == "Player")
+		if (other.gameObject.tag == "PlayerParent")
 		{
 			playerNeaby = true;
 		}
@@ -41,7 +41,7 @@ public class BedHandler : MonoBehaviour
 
 	private void OnTriggerExit2D(Collider2D other)
 	{
-		if (other.gameObject.tag == "Player")
+		if (other.gameObject.tag == "PlayerParent")
 		{
 			playerNeaby = false;
 		}

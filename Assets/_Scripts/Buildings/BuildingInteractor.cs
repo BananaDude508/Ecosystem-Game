@@ -18,13 +18,13 @@ public class BuildingInteractor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "PlayerParent")
             nearbyPlayer = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "PlayerParent")
             nearbyPlayer = false;
     }
 }
