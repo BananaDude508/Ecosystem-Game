@@ -6,6 +6,7 @@ using UnityEngine;
 using static PlayerInventory;
 using static AllPlantsManager;
 using static SustainPlantsBetweenScenes;
+using static DayNightManager;
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -29,6 +30,7 @@ public class PlayerFarming : MonoBehaviour
 	public EventSystemKeepSelected buttonHighlighter;
 
 	public TextMeshProUGUI moneyText;
+	public TextMeshProUGUI dayCounter;
 
 	public InventoryUI inventoryUI;
 
@@ -52,6 +54,7 @@ public class PlayerFarming : MonoBehaviour
 		UpdatePlantAmounts();
         if (plantParent == null)
 			plantParent = instance.gameObject.transform;
+		UpdateDayCounter();
     }
 
     private void Update()
@@ -121,6 +124,11 @@ public class PlayerFarming : MonoBehaviour
     {
         foreach (var item in items)
 			plantTexts[itemTypes.IndexOf(item.Key)].text = items[item.Key].amount.ToString();
+	}
+
+	public void UpdateDayCounter()
+	{
+		dayCounter.text = "Day " + currentDay;
 	}
 
 	private bool PlantBoundsAllowed()

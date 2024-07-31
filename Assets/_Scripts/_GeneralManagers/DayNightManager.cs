@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static AllPlantsManager;
 
 public static class DayNightManager
 {
@@ -11,7 +10,7 @@ public static class DayNightManager
 
 	public static bool TryAdvancingDay()
 	{
-		if (sleeping || SceneManager.GetActiveScene().name == "Game") return false;
+		if (sleeping || SceneManager.GetActiveScene().name != "Home") return false;
 		currentDay++;
 
 		return true;

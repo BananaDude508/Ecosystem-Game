@@ -11,11 +11,12 @@ public class BedHandler : MonoBehaviour
 
 	public Animator overlayAnim;
 
-    private CrowSpawner crowSpawner;
+	public PlayerFarming player;
+
 
     private void Awake()
     {
-		crowSpawner = FindObjectOfType<CrowSpawner>();
+		player = GameObject.FindGameObjectWithTag("PlayerParent").GetComponent<PlayerFarming>();
     }
 
     private void Update()
@@ -25,6 +26,7 @@ public class BedHandler : MonoBehaviour
 			{
 				sleepsOutsideGame++;
 				overlayAnim.SetTrigger("sleeping");
+				player.Invoke("UpdateDayCounter", 1f);
 			}
 	}
 
