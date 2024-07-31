@@ -24,7 +24,7 @@ public class CrowMovement : MonoBehaviour
         if (currentState == CrowState.Flying)
             transform.Translate(new Vector2(-flySpeed * Time.deltaTime, 0));
 
-        if (Random.Range(0f, 1f) <= eatChance * Time.deltaTime && currentState == CrowState.Idle)
+        else if (currentState == CrowState.Idle && Random.Range(0f, 1f) <= eatChance * Time.deltaTime)
         {
             ChangeState(CrowState.Eating);
             Invoke("DefaultState", 0.933f);
@@ -35,6 +35,7 @@ public class CrowMovement : MonoBehaviour
     {
         if (other.tag == "PlayerParent")
         {
+            CancelInvoke("DefaultState");
             ChangeState(CrowState.Flying);
             FlyAway(other.transform);
         }
