@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
         {
             Screen.fullScreen = !Screen.fullScreen;
         }
+        print(waterCanLevel);
     }
 
     private void GMOnLevelChange(Scene scene, LoadSceneMode loadSceneMode)

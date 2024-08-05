@@ -2381,9 +2381,11 @@ MonoBehaviour:
   - {fileID: 597996370}
   - {fileID: 1927728949}
   - {fileID: 7012798025742342243}
+  - {fileID: 4113321743879494520}
   plantLayer:
     serializedVersion: 2
     m_Bits: 1024
+  touchingWater: 0
   canPlantOn:
     serializedVersion: 2
     m_Bits: 256
@@ -2397,7 +2399,7 @@ MonoBehaviour:
   uiClickSound: {fileID: 8300000, guid: 8eb4712d626db0d43af1cacae0bdcc93, type: 3}
   waterCan: {fileID: 5173456196078119312}
   waterCanFull: {fileID: -133729277, guid: 035fc979c06053349acdb0d484494a29, type: 3}
-  waterCanEmpty: {fileID: 0}
+  waterCanEmpty: {fileID: -1862333284, guid: 035fc979c06053349acdb0d484494a29, type: 3}
 --- !u!58 &8185029379274197639
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2938,7 +2940,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

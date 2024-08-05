@@ -166,5 +166,8 @@ MonoBehaviour:
   - {fileID: 1846080800, guid: 89890d08587f23744b1e1b37ecbbe0ea, type: 3}
   growthStage: 0
   plantType: potato
+  grows: 1
+  wateredToday: 0
+  scarecrowDays: 0
   harvestPenalty: 2
   harvestReward: 0

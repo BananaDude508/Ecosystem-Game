@@ -21,7 +21,7 @@ public class PlayerFarming : MonoBehaviour
 
 	public LayerMask plantLayer;
 	private bool touchingPlant = false;
-	private bool touchingWater = false;
+	public bool touchingWater = false;
 
 	public LayerMask canPlantOn;
 
@@ -61,6 +61,7 @@ public class PlayerFarming : MonoBehaviour
         if (plantParent == null)
 			plantParent = instance.gameObject.transform;
 		UpdateDayCounter();
+        waterCan.sprite = waterCanLevel > 0 ? waterCanFull : waterCanEmpty;
     }
 
     private void Update()
@@ -76,7 +77,9 @@ public class PlayerFarming : MonoBehaviour
 
             if (equippedItem.name == "watercan")
             {
+				print("asds");
 				if (!TryWaterPlant()) return;
+				print("aids");
 				PlantGrowth targetPlant = GetPlantCollision();
 				if (targetPlant == null) return;
 				targetPlant.wateredToday = true;
@@ -96,6 +99,7 @@ public class PlayerFarming : MonoBehaviour
 		{
 			waterCanLevel = 5;
             waterCan.sprite = waterCanLevel > 0 ? waterCanFull : waterCanEmpty;
+			return;
         }
 
         if (touchingPlant && Input.GetMouseButtonDown(1))
@@ -123,28 +127,20 @@ public class PlayerFarming : MonoBehaviour
 		return hit;
 	}
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-		if (other.gameObject.tag == "Water")
-			touchingWater = true;
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Water")
-            touchingWater = false;
-    }
-
     private void OnTriggerStay2D(Collider2D other)
 	{
 		if (other.tag == "Plant")
 			touchingPlant = true;
+		if (other.tag == "Water")
+			touchingWater = true;
 	}
 
 	private void OnTriggerExit2D(Collider2D other)
 	{
 		if (other.tag == "Plant")
 			touchingPlant = false;
+		if (other.tag == "Water")
+			touchingWater = false;
 	}
 
 	public void PreparePlant(int newPlantInvId)

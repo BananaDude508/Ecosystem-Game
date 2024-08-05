@@ -1,1 +1,1 @@
-- Add watering mechanic (?)
+- Add indicator for when plant is watered
