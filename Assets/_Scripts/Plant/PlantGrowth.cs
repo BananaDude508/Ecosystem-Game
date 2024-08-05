@@ -11,6 +11,7 @@ public class PlantGrowth : MonoBehaviour
 	public int growthStage = 0;
 	public string plantType = "wheat";
 	public bool grows = true;
+	public bool wateredToday = false;
 	[HideInInspector] public int scarecrowDays = 0;
 
 	[SerializeField] private int harvestPenalty = 0;
@@ -30,7 +31,7 @@ public class PlantGrowth : MonoBehaviour
 
 	public void Grow()
 	{
-		if (growthStage + 1 < growthStages.Length)
+		if (growthStage + 1 < growthStages.Length && wateredToday)
 		{
 			growthStage++;
 			UpdateSprite();
@@ -43,6 +44,7 @@ public class PlantGrowth : MonoBehaviour
                 return;
             }
         }
+		wateredToday = false;
     }
 
 	public void HurtByCrow(int damage)

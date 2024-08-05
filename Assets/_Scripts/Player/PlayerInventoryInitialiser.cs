@@ -21,6 +21,9 @@ public class PlayerInventoryInitialiser : MonoBehaviour
 				case "tomato":
 					item.amount = 1;
 					break;
+				case "watercan":
+					item.amount = 1;
+					break;
 				default:
 					item.amount = 0;
 					break;

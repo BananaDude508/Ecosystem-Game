@@ -13,6 +13,7 @@ TagManager:
   - InventoryButton
   - PlayerParent
   - PlayerHideOvernight
+  - Water
   layers:
   - Default
   - TransparentFX

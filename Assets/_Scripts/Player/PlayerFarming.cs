@@ -9,6 +9,7 @@ using static SustainPlantsBetweenScenes;
 using static DayNightManager;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerFarming : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerFarming : MonoBehaviour
 
 	public LayerMask plantLayer;
 	private bool touchingPlant = false;
+	private bool touchingWater = false;
 
 	public LayerMask canPlantOn;
 
@@ -39,6 +41,10 @@ public class PlayerFarming : MonoBehaviour
 
 	public AudioSource playerUISound;
 	public AudioClip uiClickSound;
+
+	public Image waterCan;
+	public Sprite waterCanFull;
+	public Sprite waterCanEmpty;
 
     private void Awake()
     {
@@ -62,10 +68,23 @@ public class PlayerFarming : MonoBehaviour
 		if (!inGameScene) return;
 
 		Item equippedItem = items[itemTypes[currentPlant]];
+		
+
 		if (!touchingPlant && !inventoryUI.hoveringOverInv && equippedItem.amount > 0 && Input.GetMouseButtonDown(0))
 		{
 			if (!PlantBoundsAllowed()) return;
-			Instantiate(plants[currentPlant], transform.position.Round(), Quaternion.identity, plantParent);
+
+            if (equippedItem.name == "watercan")
+            {
+				if (!TryWaterPlant()) return;
+				PlantGrowth targetPlant = GetPlantCollision();
+				if (targetPlant == null) return;
+				targetPlant.wateredToday = true;
+				waterCan.sprite = waterCanLevel > 0 ? waterCanFull : waterCanEmpty;
+				return;
+            }
+
+            Instantiate(plants[currentPlant], transform.position.Round(), Quaternion.identity, plantParent);
 			equippedItem.amount--;
 			UpdatePlantAmounts();
             playerPlantSource.clip = plantingSound;
@@ -73,7 +92,13 @@ public class PlayerFarming : MonoBehaviour
 			// print("playing sound");
 		}
 
-		if (touchingPlant && Input.GetMouseButtonDown(1))
+		if (touchingWater && equippedItem.name == "watercan" && Input.GetMouseButtonDown(1))
+		{
+			waterCanLevel = 5;
+            waterCan.sprite = waterCanLevel > 0 ? waterCanFull : waterCanEmpty;
+        }
+
+        if (touchingPlant && Input.GetMouseButtonDown(1))
 		{
 			PlantGrowth targetPlant = GetPlantCollision();
 			if (targetPlant == null) return;
@@ -88,6 +113,7 @@ public class PlayerFarming : MonoBehaviour
 			Destroy(targetPlant.gameObject);
 		}
 
+
 		moneyText.text = '$' + money.ToString();
 	}
 
@@ -97,7 +123,19 @@ public class PlayerFarming : MonoBehaviour
 		return hit;
 	}
 
-	private void OnTriggerStay2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+		if (other.gameObject.tag == "Water")
+			touchingWater = true;
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Water")
+            touchingWater = false;
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
 	{
 		if (other.tag == "Plant")
 			touchingPlant = true;
@@ -123,7 +161,8 @@ public class PlayerFarming : MonoBehaviour
 	public void UpdatePlantAmounts()
     {
         foreach (var item in items)
-			plantTexts[itemTypes.IndexOf(item.Key)].text = items[item.Key].amount.ToString();
+			if (item.Value.name != "watercan")
+				plantTexts[itemTypes.IndexOf(item.Key)].text = items[item.Key].amount.ToString();
 	}
 
 	public void UpdateDayCounter()

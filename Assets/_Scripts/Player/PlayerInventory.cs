@@ -16,12 +16,21 @@ public static class PlayerInventory
 
     public static Goal currentGoal;
 
+    public static int waterCanLevel = 0;
+
     public static Item AddItem(string name)
     {
         if (items.ContainsKey(name)) return new Item();
         Item item = new Item(name);
         items.Add(name, item);
         return item;
+    }
+
+    public static bool TryWaterPlant()
+    {
+        if (waterCanLevel <= 0) return false;
+        waterCanLevel--;
+        return true;
     }
 }
 

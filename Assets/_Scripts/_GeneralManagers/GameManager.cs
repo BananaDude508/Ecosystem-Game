@@ -80,6 +80,8 @@ public class GameManager : MonoBehaviour
     public void PlantsOnLevelChange(Scene scene, LoadSceneMode sceneLoadMode)
     {
         if (scene.name != "Game") return;
+        
+        GrowAllPlants(sleepsOutsideGame);
 
         foreach (var plant in allPlants)
             if (plant.plantType == "scarecrow")
@@ -89,11 +91,12 @@ public class GameManager : MonoBehaviour
                 if (plant.scarecrowDays < 3) continue;
 
                 StartCoroutine(IE_DeletePlant(plant, Time.deltaTime));
-                    
+
                 scarecrowPlaced = false;
             }
+            else plant.wateredToday = false;
 
-        GrowAllPlants(sleepsOutsideGame);
+        waterCanLevel = 0;
     }
 
     public void CrowsOnLevelChange(Scene scene, LoadSceneMode sceneLoadMode)
