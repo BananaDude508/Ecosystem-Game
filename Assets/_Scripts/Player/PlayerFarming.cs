@@ -81,8 +81,8 @@ public class PlayerFarming : MonoBehaviour
 
 			items[type].amount += targetPlant.harvestReward;
 			UpdatePlantAmounts();
-			Debug.Log(targetPlant.harvestReward + " " + type + " gained");
-			Debug.Log("Current amount of " + type + " is " + items[type].amount);
+			// Debug.Log(targetPlant.harvestReward + " " + type + " gained");
+			// Debug.Log("Current amount of " + type + " is " + items[type].amount);
 
 			RemovePlant(targetPlant);
 			Destroy(targetPlant.gameObject);

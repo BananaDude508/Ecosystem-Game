@@ -1,2 +1,1 @@
-- Add watering mechanic
-- Say growth times in shop
+- Add watering mechanic (?)
