@@ -1,1 +1,3 @@
 - Add watering mechanic
+- Outline when plant is grown
+- Say growth times in shop

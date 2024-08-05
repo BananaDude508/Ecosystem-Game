@@ -17162,6 +17162,22 @@ PrefabInstance:
       propertyPath: buttonHighlighter
       value: 
       objectReference: {fileID: 1924085480}
+    - target: {fileID: 920707314, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920707314, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920707314, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 920707314, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1285199165, guid: dabf428ca385f9a439f0665b10a93560, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
