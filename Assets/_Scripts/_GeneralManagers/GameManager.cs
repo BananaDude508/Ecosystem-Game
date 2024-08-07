@@ -47,7 +47,6 @@ public class GameManager : MonoBehaviour
         {
             Screen.fullScreen = !Screen.fullScreen;
         }
-        print(waterCanLevel);
     }
 
     private void GMOnLevelChange(Scene scene, LoadSceneMode loadSceneMode)
@@ -95,9 +94,11 @@ public class GameManager : MonoBehaviour
 
                 scarecrowPlaced = false;
             }
-            else plant.wateredToday = false;
-
-        waterCanLevel = 0;
+            else
+            {
+                plant.wateredToday = false;
+                plant.UpdateGround();
+            }
     }
 
     public void CrowsOnLevelChange(Scene scene, LoadSceneMode sceneLoadMode)

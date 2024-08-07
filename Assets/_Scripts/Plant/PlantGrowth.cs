@@ -12,6 +12,7 @@ public class PlantGrowth : MonoBehaviour
 	public string plantType = "wheat";
 	public bool grows = true;
 	public bool wateredToday = false;
+	public SpriteRenderer groundRenderer;
 	[HideInInspector] public int scarecrowDays = 0;
 
 	[SerializeField] private int harvestPenalty = 0;
@@ -67,6 +68,8 @@ public class PlantGrowth : MonoBehaviour
 
     private void UpdateSprite()
 	{
+		UpdateGround();
+
 		if (!grows || growthStages.Length <= growthStage || growthStage < 0) return;
 
         sr.sprite = growthStages[growthStage];
@@ -74,7 +77,14 @@ public class PlantGrowth : MonoBehaviour
         harvestReward = Mathf.Max(0, growthStage - harvestPenalty);
     }
 
-	private void DestroyThis()
+    public void UpdateGround()
+    {
+		Color color = groundRenderer.color;
+		color.a = wateredToday ? .5f : 0f;
+		groundRenderer.color = color;
+    }
+
+    private void DestroyThis()
 	{
 		allPlants.Remove(this);
 		Destroy(gameObject);

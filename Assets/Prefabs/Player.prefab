@@ -2385,6 +2385,7 @@ MonoBehaviour:
   plantLayer:
     serializedVersion: 2
     m_Bits: 1024
+  touchingPlant: 0
   touchingWater: 0
   canPlantOn:
     serializedVersion: 2
@@ -2395,6 +2396,7 @@ MonoBehaviour:
   inventoryUI: {fileID: 164733036}
   playerPlantSource: {fileID: 4614772017577818920}
   plantingSound: {fileID: 8300000, guid: 841bad377e87c624498605ca6dfac466, type: 3}
+  wateringSound: {fileID: 8300000, guid: 24a2c9c6930793c4ea248f71a80d4280, type: 3}
   playerUISound: {fileID: 1556602497}
   uiClickSound: {fileID: 8300000, guid: 8eb4712d626db0d43af1cacae0bdcc93, type: 3}
   waterCan: {fileID: 5173456196078119312}

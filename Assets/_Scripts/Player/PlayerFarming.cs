@@ -20,7 +20,7 @@ public class PlayerFarming : MonoBehaviour
 	public GameObject[] inventoryButtons;
 
 	public LayerMask plantLayer;
-	private bool touchingPlant = false;
+	public bool touchingPlant = false;
 	public bool touchingWater = false;
 
 	public LayerMask canPlantOn;
@@ -38,6 +38,7 @@ public class PlayerFarming : MonoBehaviour
 
 	public AudioSource playerPlantSource;
 	public AudioClip plantingSound;
+	public AudioClip wateringSound;
 
 	public AudioSource playerUISound;
 	public AudioClip uiClickSound;
@@ -73,26 +74,27 @@ public class PlayerFarming : MonoBehaviour
 
 		if (!touchingPlant && !inventoryUI.hoveringOverInv && equippedItem.amount > 0 && Input.GetMouseButtonDown(0))
 		{
-			if (!PlantBoundsAllowed()) return;
-
             if (equippedItem.name == "watercan")
             {
-				print("asds");
+                PlantGrowth targetPlant = Physics2D.OverlapCircle(transform.position, 0.5f, plantLayer).GetComponent<PlantGrowth>();
+                if (targetPlant == null) return;
+				if (targetPlant.wateredToday) return;
 				if (!TryWaterPlant()) return;
-				print("aids");
-				PlantGrowth targetPlant = GetPlantCollision();
-				if (targetPlant == null) return;
 				targetPlant.wateredToday = true;
+				targetPlant.UpdateGround();
 				waterCan.sprite = waterCanLevel > 0 ? waterCanFull : waterCanEmpty;
+				playerPlantSource.clip = wateringSound;
+				playerPlantSource.Play();
 				return;
             }
+
+            if (!PlantBoundsAllowed()) return;
 
             Instantiate(plants[currentPlant], transform.position.Round(), Quaternion.identity, plantParent);
 			equippedItem.amount--;
 			UpdatePlantAmounts();
             playerPlantSource.clip = plantingSound;
             playerPlantSource.Play();
-			// print("playing sound");
 		}
 
 		if (touchingWater && equippedItem.name == "watercan" && Input.GetMouseButtonDown(1))
@@ -104,8 +106,8 @@ public class PlayerFarming : MonoBehaviour
 
         if (touchingPlant && Input.GetMouseButtonDown(1))
 		{
-			PlantGrowth targetPlant = GetPlantCollision();
-			if (targetPlant == null) return;
+			PlantGrowth targetPlant = Physics2D.OverlapCircle(transform.position, 0.5f, plantLayer).GetComponent<PlantGrowth>();
+            if (targetPlant == null) return;
 			string type = targetPlant.plantType;
 
 			items[type].amount += targetPlant.harvestReward;
@@ -119,12 +121,6 @@ public class PlayerFarming : MonoBehaviour
 
 
 		moneyText.text = '$' + money.ToString();
-	}
-
-	private PlantGrowth GetPlantCollision()
-	{
-		PlantGrowth hit = Physics2D.OverlapCircle(transform.position, 0.5f, plantLayer).GetComponent<PlantGrowth>();
-		return hit;
 	}
 
     private void OnTriggerStay2D(Collider2D other)
