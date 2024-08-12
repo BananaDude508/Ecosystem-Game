@@ -73,6 +73,10 @@ public class ShopManager : MonoBehaviour
 
         inventoryAmounts[itemID].text = items[item.name.ToLower()].amount.ToString();
         UpdateMoney();
+
+        if (item.name.ToLower() == currentGoal.goalType)
+            if (item.name.ToLower() != "scarecrow")
+                currentGoal.amount++;
     }
 
     public void SellItem(int itemID)
@@ -86,6 +90,10 @@ public class ShopManager : MonoBehaviour
 
         inventoryAmounts[itemID].text = items[item.name.ToLower()].amount.ToString();
         UpdateMoney();
+
+        if (item.name.ToLower() == currentGoal.goalType)
+            if (item.name.ToLower() != "scarecrow")
+                currentGoal.amount--;
     }
 
     public void ReturnToFarm()
