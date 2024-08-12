@@ -80,7 +80,8 @@ public class GameManager : MonoBehaviour
     public void PlantsOnLevelChange(Scene scene, LoadSceneMode sceneLoadMode)
     {
         if (scene.name != "Game") return;
-        
+        if (sleepsOutsideGame <= 0) return;
+
         GrowAllPlants(sleepsOutsideGame);
 
         foreach (var plant in allPlants)
